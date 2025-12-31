@@ -12,5 +12,11 @@ When I started to prepare the answer key in June, I found to my dismay that almo
 
 I have left the original draft available so that it can be verified that the changes made to the file are only corrections, rather than substantive changes. In particular, they do not to any degree reflect any change in the state of the art of cutting-edge AI or change in my understanding of cutting-edge AI.
 
-ADDED 12/31/2025. I tested ChatGPT-5.2 Thinking on a few examples, omitting the long preamble. It got all of them right. So the bet is lost. I have uploaded the unencrypted benchmark
-problems, with solutions, in case they are still of any interest. The password on the encrypted versions was "Ortelius" if you want to check.
+ADDED 12/31/2025. I tested ChatGPT-5.2 Thinking on a few examples, omitting the long explanatory preamble. It got all of them right. So the bet is lost. I have uploaded the unencrypted benchmark problems, with solutions, in case they are still of any interest. The password on the encrypted versions was "Ortelius" if you want to check.
+
+The unencrypted files are:
+CycleTourFinalProblems.html : Problems without answers.
+CycleTourFinalAnswers.html: Problems with answers but without explanation.
+CycleTourFinal.html: Problems with answers and explanations.
+
+
