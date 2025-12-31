@@ -1,0 +1,2783 @@
+<TITLE> The Cycle Tour Benchmark</TITLE>
+<H2> The Cycle Tour Benchmark</H2>
+<A href="https://cs.nyu.edu/~davise/"> Ernest Davis</A> <br>
+June 7, 2025
+
+<H3>The Bet</H3>
+
+<p>
+On February 10, 2025 I proposed the following bet on Facebook:
+<BLOCKQUOTE>
+For those who feel it is likely that AGI is imminent: I will bet $200  
+even odds, that I can, in the next six weeks, assemble a dataset of 100 
+problems written entirely in English text (no images) with numerical 
+answers that a smart sixth-grader using standard references and an 
+adding machine can easily and reliably answer, and that no AI that 
+exists on December 31, 2025 can get more than 25 out of 100 correct. 
+I'll offer the same bet at $100 to $200 for December 31, 2026. 
+<p>
+The terms are: On or before March 24, I will finalize the collection 
+and save it in a way that the date of the version can be authenticated 
+(possibly just by emailing it to a trusted third party). If 
+anyone accepts the bet, then I will release the dataset on January 2, 
+2026/7. They get to try 4 different AI programs, of their choice, by 
+January 8. The dataset has to be given directly to the program as I 
+have written it; they may not add prompts, write preprocessing code, 
+etc. between the release and the test. The onus of getting access to 
+the programs is up to them (e.g. if GPT-7q has been announced with all 
+kinds of wonderful claims but the better can't actually run it, then 
+its existence doesn't affect the bet.)
+<p>
+Until someone accepts the bet, I will feel free to either change the 
+terms of the bet (odds or date) or withdraw it entirely if I feel that 
+circumstances warrant it.
+</BLOCKQUOTE>
+
+<p> I added a couple of clarifying comments before the bet was accepted:
+
+<BLOCKQUOTE>
+Any pre-existing computer program using any kind of resource other than 
+consulting with a human being [is allowed]. What is disallowed is rigging up some 
+kind of combination once you've seen the dataset. If you want to create 
+a setup that calls GPT-5 + [AlphaGeometry 3 + AlphaProof 2] before 12/31/25, and you don't change 
+it, that's fine.
+</BLOCKQUOTE>
+
+<p>
+Itamar Talmon accepted the bet on Facebook on February 11.
+
+<H4> Corrections made in June 2025 </H4>
+I proposed the bet on February 11, 2025 and gave myself a 6 week window to create
+the collection of 100 problems. The writing of problems was much slower than I 
+had anticipated, and it was a busy time of year. I realized that it would suffice
+to write the problems by the deadline, and that I could postpone working out and
+writing up the answers until later. So I compiled and wrote the problems at that
+time. 
+<p>
+In late May/early June 2025 I returned to this to prepare the answer key. In
+looking through the problem collection I had made in March, two issues because
+obvious. First, there are even more issues with obtaining gold standard answers than I had realized in March, and a few of the assumptions that I had made in writing up the problems turned out to be wrong. Second, and much more seriously,
+45 of the 100 problems had errors, and in 21 cases, those were serious enough
+that an answerer would be justified in answering that the problem was "Flawed".
+(In the other 24 cases the errors were typos small enough that a human problem
+solver should be able to easily fix them.) 
+
+<p>
+Of course, I corrected all the errors that I found. The corrected version is in the file CycleTourBenchmarkFinalProblems.html. It certainly has fewer error than the original, in CycleTourBenchmarkOriginal.html; I expect few errors (I feel reasonably confident
+that there fewer than five problems with errors); hopefully zero. Anyone who is using this collection for any purpose going forward should use this version and the associated answer key
+
+<p>
+The original version is now entirely irrelevant, except, arguably, for 
+the bet. The statement specified that I would formulate the questions 
+by March 24; and the version that I had formulated by March 24 is the 
+one with the errors. I may note: (A) The
+corrected versions of the problems are quite clearly edited versions 
+of the original 
+problems; in all but one case, the edit consists of only a few words. 
+(B) The edits
+in no way reflect any improvement in the state of the art of AI or in 
+my understanding of AI, which was the point of the March 24 deadline. 
+Still, a bet is a bet, and 
+The people who took the opposite side of the bet have a strong case 
+that they should be able to use the version posted on March 24. So I 
+have prepared an answer key for that as well, where two answers are 
+specified for each of the problems with significant errors: Either the 
+answer that I originally had in mind or the answer "Flawed" can be accepted 
+as correct.
+
+
+<H3> The Dataset</H3>
+You will be asked a series of questions. Each of them describes a
+traveller, Andy or Amy,
+who follows a specified route and returns to their original starting point.
+The question you have to answer is, what is the <em>signed area</em> of the
+region that his path encloses, in square miles? The signed area enclosed by a path
+is positive if the path is counterclockwise and negative if the path is clockwise.
+In all the questions the path will either be clearly clockwise or clearly
+counterclockwise; we will not have questions where the route crosses itself.
+You need not explain your answers; just give the numerical value.
+
+<p>
+A few examples to make this clear:
+<p>
+<b>Question:</b> Andy starts at the point where Colorado meets Oklahoma and 
+Kansas. He travels north along the entire eastern border of Colorado, 
+west along its entire northern border, south along its entire western border, 
+and east along its entire southern border. What is the signed area enclosed
+by the path? <br>
+<b>Answer:</b> 104,094 square miles. <br>
+<b>Explanation:</b>The path contains the state of Colorado
+and is counterclockwise. 
+<p>
+
+<p>
+<b>Question:</b> Amy starts at the point where Colorado meets Oklahoma and 
+Kansas. She travels west along the entire southern border of Colorado, 
+north along its entire western border, east along its entire northern border, 
+and south along its entire eastern border. 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -104,094 square miles. <br>
+<b>Explanation:</b>The path contains the state of Colorado
+and is clockwise. 
+
+
+<P>
+<b>Question:</b> Amy starts at the southeast corner of Arkansas. 
+She travels 
+upstream on the Mississippi River until she reaches Iowa. She travels due
+west on the southern border of Iowa until she reaches Nebraska. She travels
+south on the eastern borders of Nebraska, Kansas, Oklahoma, and Texas to
+the northwest corner of Louisiana. She travels east along the northern border
+of Louisiana until she returns to her starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 121,894 square miles.
+<b>Explanation:</b> 
+The path is counterclockwise and encloses Arkansas (52179 sq. miles) and Missouri
+(69715 sq. miles).
+
+<p> In all of the problems in the dataset, the path completely 
+encloses some number of US states and some countries in Europe, Asia, and 
+Africa.
+Therefore  the problem can be solved
+can be solved
+by (i) figuring out what regions are enclosed; (ii) looking up their areas; 
+(iii) adding those
+up; and (iv) figuring out whether the path is clockwise or counterclockwise to
+get the sign.
+
+<p>
+The relevant areas of the states and countries are their land areas plus
+their inland waters, but not including their coastal waters.
+For US states,
+that sum can be computed by adding the "Land area" and "Inland water are"
+columns in 
+<A href="https://www.usgs.gov/special-topics/water-science-school/science/how-wet-your-state-water-area-each-state"> 
+this table.</A> (For states not on the coast or on the Great Lakes, that is
+just the total area.)
+For countries, the sum can be found in
+<A href="https://www.indexmundi.com/facts/indicators/ag.srf.totl.k2/rankings/"> 
+this table.</A>. For Canadian provinces, that  is the total area as listed 
+in 
+<A href="https://www.worldatlas.com/geography/canadian-provinces-and-territories-by-size.html"> here</A>
+
+<p>
+Paths that go up the Atlantic coast of North Carolina should be 
+assumed to travel up the Outer Banks. The area of North Carolina may thus be taken 
+as 52,670 square miles (48618 land plus 4052 inland water). 
+
+<p> 
+The area of Saskatchewan
+may be taken as 651,036 square kilometers, which is the figure given both in
+the table linked above and in the Wikipedia article "Geography of Saskatchewan". 
+(The Wikipedia article "Saskatchewan" gives an area of 651,900 square kilometers.)
+Due to surveying errors in the 1880s the Saskatchewan/Alberta border does not lie
+perfectly on a line of longitude, and
+meeting point of Saskatchewan, Alberta,
+and Northwest Territories is in fact 400 meters west of the meeting point of Alberta,
+Nunavut, and Northwest Territories. Ignore both those fact, and assume that the 
+border runs north/south and that four
+regions in fact meet at a single point, as it would appear from looking at a large
+scale map.
+
+<p> South Sudan and Western Sahara are not included in the 
+list of countries linked above. South Sudan has has an area of 644,329 
+square kilometers. Western Sahara has an area of 272,000 square kilometers. The
+figure given there for Serbia 88,360 sq. km. includes both Serbia and Kosovo.
+Kosovo has an area of 10887; Serbia without Kosovo has an area of 77,589.
+Kaliningrad (a disconnected part of Russia) has an area of 15215 square 
+kilometers.
+
+<p>
+For paths in Europe that include the continental part of 
+Italy, use a figure of 252,150 km<sup>2</sup> = 97330 mi<sup>2</sup>
+(302,700 for the country of Italy minus Sicily (25,830) and Sardinia (24,090)).
+For path that include the continental part of France, 
+, use a figure of 535,220 km<sup>2</sup> = 206,600 mi<sup>2</sup>
+(535,940 for European France minus Corsica (8722)). There remains some
+imprecision &mdash; there are other small islands, it makes some difference
+exactly what path you follow in travelling along rivers, there is a 26 square
+mile chunck of Kentucky that is west of the Mississippi river, and so on.
+For that reason, an answer that agrees with ours to within 1% will be 
+considered correct.
+<p>
+I suggest that you get a map and draw the route on the map. (If you are using a 
+printed map it might be a good idea to use tracing paper, so as not
+to spoil the map. Or make photocopies.) Once you've done that, the answers to
+(i) and (iv) should be visually obvious.
+
+<p>
+Any simple closed cycle C on a plane divides the plane into 
+two disconnected parts: The inside
+and the outside (mathematically, this is known as "the Jordan curve theorem"). Any 
+simple closed cycle on the surface of the sphere divides the sphere into two 
+parts. Unless
+the cycle has a size comparable to the circumference of the earth, one part will be
+much smaller in area than the other; the small part is the "inside" and the 
+large part is the "outside". The way you can tell whether a point X is inside or 
+outside C is this: Pick some point P very far from C (in all our examples, P could
+be the North Pole, for example. Is there a some kind of path, possibly very twisty,
+from X to P that never comes in contact with C? If there is such a path, then X
+is outside C. If it is impossible to get from X to P without crossing C, then X is 
+inside C.
+
+<p>
+Here's a method for determining whether a complicated cycle is clockwise or 
+counterclockwise, which works as long as you can tell what is inside and what
+is outside. Imagine that the traveller is always facing forward on the path that 
+they are traversing. If the cycle is clockwise, than the stuff immediately to their
+right is inside the cycle and the stuff to their left is outside. If the cycle
+is counterclockwise, then the stuff to their right is outside and the stuff to their
+left is inside.
+
+<p> Another way to judge clockwise vs. counterclockwise is to look for the
+extreme parts of the path in each of the cardinal directions. 
+If the path
+is clockwise, then the northmost part of the path goes east, the 
+eastmost goes south, the southmost goes west, and the westmost goes north.
+If the path
+is counter-clockwise, then the southmost part of the path goes east, the 
+eastmost goes north, the northmost goes west, and the westmost goes south.
+
+<p>
+At no time does the traveller turn completely around and retrace his steps 
+on the route he has just taken in the opposite direction. Please keep this
+in mind, as it can be critical in disambiguating the path taken. For
+instance I might write, "Amy starts at the northeast corner of
+Colorado and travels due west to the northwest corner. 
+She then continues on the border of Wyoming until she reaches Nebraska."
+The first sentence means that Amy travels west along the northern border
+of Colorado with Nebraska and then on the northern border of Colorado  
+with Wyoming to the northwest corner of Colorado.
+Since Amy is not allowed to turn around,
+the second sentence, "she continues on the border of Wyoming," means that she
+continues travelling west on the southern border of Wyoming with Utah, then 
+goes north on the western border of Wyoming with Utah, Idaho and 
+(briefly) Montana; then west on the northern border of Wyoming with Montana;
+then south on the eastern border of Wyoming with South Dakota until she
+reaches the meeting point of Wyoming, South Dakota, and Nebraska. (You
+might like to look at a map.)
+
+<p>
+Some of these paths would in reality be physically extremely difficult 
+or impossible.  Some of the paths that go along borders of countries 
+would put a traveller at risk
+of being arrested by border patrols on one side or the other. Ignore
+all such practical considerations. The question is really about the 
+area inside a curve that can be drawn on a map.
+
+<p>
+If you feel that a question is flawed --- that is, the path described is 
+impossible, or the path is not a simple closed curve, or that the description is 
+consistent with two 
+different valid paths with significantly different answers --- then you should
+answer "Flawed". If you want, you may explain the flaw, but that is not required.
+No flawed examples have been included deliberately, but it is 
+certainly possible that a mistake has been made. If you are correct that the
+problem is flawed, then an answer of "Flawed" will be marked correct; if
+in fact the problem is not flawed, then the answer will be marked incorrect.
+Small misspellings, grammatical errors, or punctuation errors do not count 
+as flaws for this purpose.
+
+<p>
+OK!  Here are the actual questions:
+
+<OL>
+<LI>
+<b>Question:</b> 
+Andy starts at the eastmost point of the border between Saskatchewan and the
+United States. He travels east on a circle of latitude to the border of Ontario. 
+He then turns left and continues on the border of Ontario
+to Hudson Bay. When he reaches Hudson Bay
+he turns roughly westward, then travels along the coasts of Hudson Bay 
+until reaching the border of Nunavut. Then he turns inland and travels west along
+a line of latitude until he reaches British Columbia. He travels south 
+on the eastern border of British Columbia until reaching the US/Canada border.
+He travels west on the 
+US-Canada border until reaching the Pacific. 
+He travels south on the Pacific coast until he reaches California. He turns inland
+and travels east on the line of latitude until he reaches the eastern 
+border of Idaho.
+He continues on the border of Idaho until he reaches Montana. 
+He then makes a right turn and travels along the border of Montana until reaching
+Canada. He makes another right
+turn and returns travelling on a circle of latitude to his starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1153438 square miles, 2987404 square km
+<b>Explanation:</b> Counter-clockwise. Alberta + Manitoba + Saskatchewan +
+Washington + Oregon + Idaho + Montana.
+
+<p>
+<LI> <b>Question:</b> 
+Starting at the outlet of the Rio Grande, Amy travels along the US-Mexico border 
+until she reaches the border of California. Then she travels north along the Arizona
+border until she reaches Nevada. She makes a gentle left turn and follows 
+the border of Nevada until reaching the southeast
+corner of Oregon; then travels north along the border of Idaho
+until she reaches Canada.  She travels east along the
+Canadian border until she reaches the northwest corner of Minnesota. She then 
+travels 
+south along the western borders of  Minnesota, Iowa, Missouri, Arkansas, and 
+Louisiana until she reaches the Gulf of Mexico. She travels along the 
+Texas coast of the Gulf of Mexico to return to her starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1507754 square miles, -3905083 square km <br>
+<b>Explanation:</b> Clockwise. 
+Texas + New Mexico + Arizona + Nevada + Utah + Idaho +  Montana + 
+Wyoming + Colorado + North Dakota + South Dakota + Nebraska +
+Kansas + Oklahoma 
+
+<p>
+<p>
+<LI><b>Question:</b> 
+Andy starts at the northeast corner of New Mexico. He travels west to the southwest
+corner of Colorado then north to the 
+northwest corner. He heads west on the border of Wyoming 
+and then follows the border of Wyoming 
+until hitting the border of Colorado again. He travels east and south 
+along the border of Colorado until
+he reaches Kansas. He travels east on the northern border of Kansas until
+reaching Missouri. He makes a left and then follows the border of Missouri to
+the Mississippi River. He goes 
+downstream on the Mississippi until reaching Louisiana.
+He travels along the northern border of Louisiana until reaching Texas. He makes a 
+follows the border of Texas with Arkansas and Oklahoma
+until he reaches the border of New Mexico.
+He travels north to his starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -476970 square miles, -1235352 square km<br>
+<b>Explanation:</b> Clockwise.
+Colorado + Wyoming + Kansas + Missouri+ Arkansas + Oklahoma.
+
+<p>
+<LI><b>Question:</b>  Amy starts at the southmost point of the California
+Pacific coast. She travels up the coast to Oregon. She travels due east to Wyoming.
+She travels south along the Wyoming border and continues on the Wyoming border
+to the northeast corner of the state. She continues due north to the US/Canada
+border. She travels east on the Canada border to Minnesota. She travels south on the 
+western border of Minnesota, Iowa, and Missouri to the southeast corner of 
+Kansas. She travels west to Nevada. She turn south on the Nevada/Arizona border
+and continues on the border of Arizona to Mexico. She travels west on the 
+US/Mexico border and returns to her starting point. <br>
+<b>Answer:</b> -765617 square miles, -1982948 square km
+<br>
+<b>Explanation:</b>
+Clockwise.
+California + Nevada + Utah + Colorado + Kansas + Nebraska + South Dakota +
+North Dakota.
+
+
+
+<p>
+<LI><b>Question:</b> Amy starts at a point on the Pacific coast of Oregon.
+She heads north to the border of Washington State. She then proceeds to cross
+the USA west to east: She follows the border of Oregon inland and continues on the 
+border of Oregon until reaching Nevada.
+She travels due east until she reaches Wyoming. Then,
+turning right, she goes south then east  along the border of Wyoming, and continues
+going due east until she reaches the northeast corner of Colorado. From that point
+she follow the border of Nebraska, first south then east then north, until
+she reaches Iowa. She then follows the border of Missouri, first east, then 
+continuing until she reaches Tennessee. She travels east along the northern
+borders, first of Tennessee, then of North Carolina, until she reaches the 
+Atlantic Ocean. She travels the Atlantic coast of the Carolinas until she reaches Georgia.
+She turns inland and follows the border of Georgia until she reaches Tennessee.
+She travels due west until she reaches the Mississippi River. She goes upstream
+on the Mississippi until reaching Missouri. She then crosses to the west
+side of the Mississippi and follows the border of Missouri until she reaches Kansas.
+She heads due west until she reaches Nevada. She then makes a left turn and
+follows the border of Nevada until she reaches the northwest corner of
+Nevada. She then heads due west to the Pacific and then along the Pacific 
+coast to her starting point.<br>
+<b>Answer:</b>-674544 square miles, -1747069 square km <br>
+<b>Explanation:</b> Clockwise.
+Oregon +` Nevada + Utah + Colorado + Kansas + Missouri + Tennessee +
+North Carolina + South Carolina.
+
+
+<p>
+<LI><b>Question:</b> Amy starts at the northeast corner of Indiana.
+She travels west until reaching Lake Michigan.
+She travels on the Indiana and Illinois shore of Lake Michigan until she
+reaches the northern border of Illinois. She then goes inland on the border of 
+Illinois to the Mississippi River, then downstream on the Mississippi to the
+southern border of Iowa. She follows the border of Iowa west to Nebraska,
+then turns left and follows the boundary of Nebraska to the northeast corner of 
+Kansas. She goes due south to the southeast corner of Kansas, then due west to the 
+four-state point. From there she travels south to the border of the US with Mexico.
+She then travels southeast along the US/Mexico border to the Gulf of Mexico.
+She then continues along the US coast of the Gulf of Mexico and
+then up the coast of the Atlantic to Virginia. She travels west on the southern border
+of Virginia to Kentucky. She makes a sharp right turn and travel alont the border
+of Kentucky to Indiana. She travels north on the eastern border of Indiana
+and returns to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1104832 square miles, 2861515 square km
+<br>
+<b>Explanation:</b> Counter-clockwise.
+North Carolina + South Carolina + Georgia + Florida + Kentucky + Tennessee +
+Alabama + Mississippi + Indiana + Illinois + Missouri + Arkansas +
+Louisiana + Oklahoma + Texas + New Mexico.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the eastmost point of the southern
+border of Nunavut. He heads south
+on the shore of Hudson Bay until reaching Ontario. He travels inland, following the
+border of Ontario until reaching the United States. He travels along the 
+Minnesota/Ontario border until reaching Lake Superior. He travels on the Minnesota
+shore of Lake Superior until reaching Wisconsin. He travels along the
+border of Wisconsin and Minnesota until he reaches the Mississippi River. He 
+travels downstream on the Mississippi until reaching the northern border
+of Louisiana. He travels west on the northern border of Louisiana, then south
+on its western border, until he reaches the Gulf of Mexico. He travels
+along the Texas shore of the Gulf of Mexico until he reaches Mexico. He then travels
+inland along the US/Mexico border until he reaches the southwest corner
+of New Mexico. He travels due north to Wyoming; travels west, then north around
+the border of Wyoming to the border of Montana. He travels along the Idaho/Montana border
+until he reaches the US/Canada border.
+He travels due east until he reaches Alberta, then travels north on the western
+border of Alberta until reaching the northwest corner of Alberta. He then
+travels east  on a circle of latitude to return to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -2135876 square miles, -5531919 square km
+<br>
+<b>Explanation:</b> Clockwise.
+Alberta + Saskatchewan + Manitoba + Montana + North Dakota + South Dakota + 
+Minnesota + Wyoming + Nebraska + Iowa + Colorado + Kansas + Missouri + 
+New Mexico + Texas + Oklahoma + Arkansas.
+
+<p>
+<LI><b>Question:</b> Amy starts at the northeast corner of Florida, on
+the coast of the Atlantic. She travels inland along the northern border
+of Florida, then, remaining on the border, briefly south, to the Gulf
+of Mexico. She continues west along the shore of the Gulf until she reaches
+Mexico. She travels the whole length of the US/Mexico border, until she
+reaches the Pacific. She travels up the Pacific coast to the border with
+Canada. She travels inland on the US/Canada border until she reaches the
+northwest corner of Idaho. She travels on the western border of Idaho to the
+southwest corner; then due west on the border of Nevada to California; then continues
+on the border of Nevada to the northwest corner of Arizona. She travels due 
+east until she reaches Missouri. She turns right, and travels south and then
+east along the border of Missouri until she reaches the border with
+Tennessee. She again travels briefly south on the Mississippi River
+then east along the southern borders of Tennessee and North Carolina to the Atlantic.
+She then travels south on the Atlantic coast and returns to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1186555 square miles, -3073177 square km <br>
+<b>Explanation:</b> Clockwise.
+South Carolina +
+Georgia +
+Alabama +
+Mississippi +
+Louisiana +
+Arkansas +
+Texas +
+Oklahoma +
+New Mexico +
+Arizona +
+California +
+Oregon +
+Washington State.
+
+<p>
+<LI><b>Question:</b> Andy starts on the California coast and travels south
+to the Mexican border. He travels inland on the Mexican border until reaching
+New Mexico. He travels due north until he reaches Wyoming. He turns left
+and travels along the Wyoming border until he reaches Montana. He follows
+the Idaho border northwest to the US/Canada border. He travels due west to
+the Pacific. He travels southward on the Pacific coast until he reaches Oregon.
+He travels east on the northern border of Oregon, then south on its western 
+border. When he reaches Nevada, he follows the border of Nevada first east
+on the northern border, then south, then northwest then north until he reaches 
+the southern border of Oregon. He travels west on the southern border of 
+Oregon to the Pacific, then south on the Pacific coast until he reaches his
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 509239 square miles, 1318929 square km <br>
+<b>Explanation:</b> Counterclockwise.
+California + Arizona + Utah + Idaho + Washington.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northeast corner of North Dakota. She travels
+south on the western borders of Minnesota, Iowa, and Missouri until reaching the 
+northern border of Oklahoma. She travels west 
+to the northwest corner of Oklahoma, then
+makes a left turn and travels along the border of New Mexico until she reaches Arizona.
+She continues along the US/Mexico border until she reaches the Pacific. She travels
+up the coast of the Pacific until she reaches the northwest corner of Oregon. She
+travels inland on the Oregon/Washington border. When she reaches the Idaho border
+she travel south along the Idaho border to Nevada. She makes a right turn along the
+Nevada border heading west. 
+She follows the Nevada border  until reaching the Idaho border again.
+She turns onto the Idaho/Utah border, and continues on the border of Idaho until
+reaching Canada. She then travels east 
+on a circle of latitude and returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1232534 square miles, -3192263 square km <br>
+<b>Explanation:</b> Clockwise.
+Oregon + California + Arizona + Utah + New Mexico + Colorado + Wyoming + Montana
++ North Dakota + South Dakota + Nebraska + Kansas.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the meeting point of Saskatchewan, Manitoba, 
+Northwest Territories, and Nunavut. He travels along the Nunavut-Manitoba 
+border, and then continues on the border of Manitoba until reaching North Dakota
+He travels south along the Minnesota border
+to the northwest corner of Iowa. He travels along the north,
+east, and southern borders of Iowa. When he reaches Nebraska, he makes a left turn,
+and travels south on the eastern borders of Nebraska and Kansas, then 
+travels along the northern
+border of Oklahoma to New Mexico. He makes a left turn, and travels on the New Mexico
+border to Mexico, then along the US-Mexico border to the Pacific. He travels north 
+on the Pacific coast to the Canadian border, then inland on the US/Canada border
+until reaching Idaho. He heads away from Canada and follows the Idaho border until
+it reaches Montana. He follows the border of Montana with Wyoming and continues on
+the Montana border until reaching Alberta. He travels in a straight line 
+to the northeast
+corner of Alberta, then follows a line of latitude eastward to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -1822822 square miles, -4721109 square km
+<b>Explanation:</b> Clockwise.
+Washington + Oregon + California + Nevada + Utah + Arizona + Wyoming +
+Colorado + New Mexico + Kansas + Nebraska + Iowa + North Dakota + South
+Dakota + Saskatchewan + Manitoba.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at a point on the Colorado/Wyoming border. She heads
+east and follows the Wyoming border until she reaches the Idaho border. She continues
+northwest on the Idaho border until reaching Canada. She travels due east to the
+northeast corner of North Dakota. She heads south on the Minnesota border 
+to the northwest corner of Iowa.
+She travels on the borders of Iowa, first with Minnesota, then with Wisconsin, until 
+reaching Illinois. She continues on the border of Illinois with Wisconsin, then
+on the Illinois shore of Lake Michigan, then south on the eastern border of Illinois
+to Missouri. She turns south along the border of Missouri until reaching Arkansas
+then travels along the northern borders of Arkansas, Oklahoma, New Mexico and Arizona
+until reaching the Arizona/Nevada border. She travels on the Arizona/Nevada border
+to the southmost point of Nevada, then continues on the Nevada border until reaching
+the northwest corner of Utah. She continues on the northern border of Utah to the
+northwest corner of Colorado, and continue east until reaching her starting point.
+
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -936364 square miles, -2425183 square km <br>
+<b>Explanation:</b> Clockwise.
+Montana + North Dakota + South Dakota + Iowa + Illinois + Missouri 
++ Nebraska + Kansas + Colorado + Utah + Nevada
+
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the eastern end of the border of Idaho 
+with British Columbia. He travels east along the US/Canada border to the 
+northwest corner of North Dakota. He then travels south along the western
+borders of North Dakota, South Dakota, Nebraska, and Kansas until 
+he reaches the southwest corner of Kansas. He travels east on the southern
+border of Kansas, then south on the eastern border of Oklahoma and Texas
+till reaching the Gulf of Mexico. He travels along the Texas
+shore of the Gulf of Mexico until he reaches Mexico, then travels the length
+of the US/Mexico border to the Pacific. He travels along the US shore of the
+Pacific to Canada. He goes inland on the US/Canada border till reaching the
+northwest corner of Idaho. He turns away from Canada, and travels along
+the Idaho border to the northwest corner of Utah. He travels the length of the
+Nevada/Utah border, then continue on the Utah border until he again reaches Idaho.
+He continues north and northwest along the Idaho border until he reaches his 
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1356585 square miles, -3513555 square km
+<br>
+<b>Explanation:</b> Clockwise.
+California + Nevada + Oregon + Washington + Arizona + New Mexico +
+Colorado + Wyoming + Montana + Texas + Oklahoma
+
+<p>
+<LI><b>Question:</b> Amy starts at the northeast corner of Washington State. 
+She travels east to the southeast corner of Alberta, then north to its 
+northeast corner.  She then continues on the Saskatchewan border until 
+reaching US/Canada border. She travels west to the northwest corner of 
+North Dakota, then south on the eastern borders of 
+Montana, Wyoming, Colorado, and New Mexico. She continues on the 
+New Mexico southern border until she reaches Arizona. She travels 
+north to the southern border of Wyoming, and continues travelling on
+the border of Utah until she reaches Arizona again. She continues in the
+same direction on the border of Arizona to Mexico. She travels along the
+southern border of California to the Pacific. She travels along the
+Pacific shore of California until reaching Oregon. She then turns inland
+and follows Oregon border until Washington State. She then travels along
+the Idaho/Washington border to return to her starting point
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1074656 square miles, -2783359 square km <br>
+<b>Explanation:</b> Clockwise.
+California + Nevada + Idaho + Montana + Saskatchewan + Wyoming + Colorado
++ New Mexico.
+
+<p>
+<LI><b>Question:</b> Andy starts at the northwest corner of Utah. He
+travels along the border of Utah with Idaho to Wyoming. He travels north on the
+Idaho/Wyoming border, then continues on the border of Wyoming to the northwest
+corner of Colorado.  He travels south to the four state point.
+He travels west along the Utah/Arizona
+border, then continues on the Arizona border until he reaches New Mexico. 
+He follows the border of New Mexico with Mexico, Texas and Oklahoma, to the
+northwest corner of Oklahoma. He travels along the northern border
+of Oklahoma to the southeast corner of Kansas. He then travels on the 
+eastern borders of Kansas, Nebraska, South Dakota, and North Dakota to Canada
+He travels west on the US/Canada border to the northwest corner of Idaho,
+then south and east on the border of Idaho to return to his starting 
+position.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 877725 square miles, 2273308 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Colorado + Arizona + New Mexico + Kansas + Nebraska
++ South Dakota + North Dakota + Montana + Idaho.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northwest corner of North Dakota.
+She travels along the western borders of North Dakota, South Dakota, 
+Nebraska, Kansas, Oklahoma, and Texas to the southeast corner of New Mexico. 
+She continues on the border of New Mexico until she reaches the northeast
+corner of Arizona. She travels on the Arizona/Utah border to Nevada. She turns
+north and follows the Nevada border until it again meets Arizona. She travels
+on the Arizona/California border to the border of Mexico. Then she continues
+on the California border and reaches the Pacific. She travels north on
+the Pacific coast to the northwest corner of Oregon. She travels inland on
+the border of Oregon with Washington. She continues on the border of
+Washington to the Canadian border. 
+She turns right and returns along the Canadian border to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -894671 square miles, -2317198 square km <br>
+<b>Explanation:</b> Clockwise.
+California + Oregon + Idaho + Utah + Montana + Wyoming + Colorado + New Mexico.
+
+<p>
+<LI><b>Question:</b>
+Andy starts at a point on the border of Montana and
+Saskatchewan. He travels east along the US/Canada border to the northeast
+corner of Montana. He makes a right turn and travels south on the eastern
+borders of Montana and Wyoming to Colorado; makes another right and travels west along
+the southern border of Wyoming; makes a third right, and travels north along
+the border of Idaho until again reaching the Canadian border. He continues on
+the border of Idaho until he reaches the northeast corner of Nevada. He 
+follows the Nevada-Utah border, then heads due east until he reaches the
+southeast corner of Kansas. He makes a left turn and follows the eastern 
+borders of Kansas, Nebraska, South Dakota, and North Dakota to reach the
+Canadian border a third time. He travels on the northern border of North
+Dakota to the southeast corner of Saskatchewan. He then turns north into 
+Canada, and follows the Saskatchewan border until reaching the US/Canada
+border again. He travels due east to return to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 831368 square miles, 2153243 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Idaho + Utah + Colorado + Kansas + Nebraska + South Dakota + North Dakota + 
+Saskatchewan.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northeast corner of Wyoming. She travels
+along the border of Wyoming with South Dakota, Nebraska, and Colorado until reaching
+Utah. She then travels
+along the border of Utah with Colorado, Arizona, Nevada, and Idaho, until she
+reaches the border of Wyoming. She continues on the border of Idaho until 
+she reaches Nevada. She travels along the border of Nevada with Oregon and
+California until she reaches Arizona. She travels south on the western border
+of Arizona to Mexico then continues the border of
+Mexico to Texas. She travels on the border of New Mexico with
+Texas and Oklahoma; then on the border of Colorado with Oklahoma and Kansas;
+then on the border of Nebraska with Kansas, Missouri, and Iowa; then continues
+north on the border of South Dakota with Iowa.
+She continues on the border
+of South Dakota until reaching Montana, and then goes south to
+her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 688279 square miles, 1782643 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Idaho + Nevada + Arizona + New Mexico + Colorado + Nebraska + South Dakota.
+
+<p>
+<LI><b>Question:</b> Andy starts at the southwest corner of Saskatchewan. He
+travels due west to the northwest corner of Idaho. He continues on the border
+of Idaho until he reaches the northwest corner of Utah. There he makes a right
+turn and travels along the borders of Utah and Arizona with Nevada and 
+California to Mexico. He travels on the border of Arizona and New Mexico
+with Mexico until he reaches Texas. He follows the border of Texas with
+the borders of New Mexico and Oklahoma to the southeast corner of Oklahoma.
+He then travels north on the eastern borders of Oklahoma, Kansas, and 
+Nebraska to the northeast corner of Nebraska. He then turns west along
+the border of South Dakota to the northwest corner of Nebraska. He make a 
+left turn, and continues on the Nebraska border until reaching the northeast
+corner of Colorado. He makes a right turn, and follows the Colorado border
+until it reaches Wyoming. He turns west and follows the Wyoming border to
+South Dakota. He then turns north and follows the western border of South
+and North Dakota to the US/Canada border. He travels west back to his starting
+point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 780612 square miles, 2021785 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Montana + Idaho + Utah + Arizona +  New Mexico + Oklahoma + Kansas + Nebraska
+<p>
+<LI><b>Question:</b> 
+Amy starts at a point on the Texas-Louisiana border. She
+heads north on the eastern borders of Texas, Oklahoma, Kansas, Nebraska, and South 
+Dakota to the northeast corner of South Dakota.She travels west along the
+southern boundary of North Dakota to Montana. She travels on the border
+of Montana slightly south, then
+west, then northwest, until she reaches the US/Canada border. She then 
+continues on the border of Idaho until she reaches the border of Wyoming. 
+She travels south to the southwest corner of Wyoming then due east 
+to the northeast corner
+of Colorado, then south on the eastern border of Colorado, then west on
+the southern borders of Colorado and Utah to the southwest corner of Utah.
+She then travels south along the western border of Arizona  to Mexico. 
+She travels east along the border of Mexico to the Gulf of Mexico. She travels
+on the Texas shore of the Gulf of Mexico until she reaches Louisiana. Then
+she goes inland following the Texas/Louisiana border and returns to her
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 990452 square miles, 2565271 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Idaho + Wyoming + South Dakota + Nebraska + Kansas + Oklahoma + Texas
++ New Mexico + Arizona.
+
+<p>
+<LI><b>Question:</b> Andy starts at the southmost point of the 
+Louisiana/Mississippi border. He travels inland on the Louisiana border
+until it meets the Mississippi river, then follows the river upstream to the
+northeast corner of Iowa. He then follows the border of Minnesota west and 
+north to the US/Canada border. He travels west along the Canada border to 
+the northeast corner of Montana, then south and west on the Montana border
+to Idaho. He travels along the border of Idaho with Wyoming and with Utah,
+then continues south on the eastern borders of Nevada and California to the
+border with Mexico. He travels the length of the Arizona/Mexico border, then 
+north to the northwest corner of Colorado; east to the northeast corner; and
+south along the western borders of Colorado and New Mexico to the southernmost
+point of New Mexico's border with Texas. 
+He continues along the Texas border to the Gulf of Mexico. He travels along 
+the Texas and Louisiana coasts of the Gulf of Mexico and returns to his
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1167813 square miles, 3024636 square km<br>
+<b>Explanation:</b> Counter-clockwise.
+Arizona + Utah + Wyoming + South Dakota + North Dakota + Nebraska +
+Kansas + Oklahoma + Texas + Louisiana + Arkansas + Missouri + Iowa. 
+
+<p>
+<LI><b>Question:</b> Amy starts at the four state point and heads west.
+She follows the Arizona border south to the Mexico border. She travels
+along the California/Mexico border to the Pacific coast, then up the Pacific
+coast to the northwest corner of California. She travels along the borders
+of Oregon and Idaho with California, Nevada, and Utah to the western border
+of Wyoming. She follows the border of Wyoming south, then east, to Nebraska.
+She follows the border of Nebraska east, then south, then east to Missouri.
+She follows the western borders of Missouri, Arkansas, and Louisiana 
+south to the Gulf of Mexico. She travels along the Texas coast of
+the Gulf to Mexico, then follows the Texas/Mexico border to New Mexico.
+She turns sharply east, and follows the New Mexico border back to the 
+four-state point. 
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -877201 square miles, -2271951 square km <br>
+<b>Explanation:</b> Clockwise.
+California + Nevada + Utah + Colorado + Kansas + Oklahoma + Texas.
+
+<p>
+<LI><b>Question:</b> Andy starts at the northwest corner of Alberta
+and travels due east until Hudson Bay. He travels along the Manitoba
+shore of the Bay until reaching Ontario. He heads inland along the 
+Ontario/Manitoba border to the US/Canada border. There he turns right, going
+west.
+He continues along the Minnesota border until he reaches Wisconsin. He
+travels the length of the eastern border of Iowa to Missouri. He then heads west
+on the southern borders of Iowa, Nebraska, and Wyoming to the southwest
+corner of Wyoming. He continues along the border of Wyoming until
+he reaches South Dakota. He travels along the border of Montana with South Dakota
+and North Dakota to the US/Canada
+border. He makes a left turn and turns west along the US/Canada border
+to the southwest corner of Alberta. He continues on the border of
+Alberta and British Columbia to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1136851 square miles, -2944444 square km <br>
+<b>Explanation:</b> Clockwise.
+Alberta + Saskatchewan + Manitoba + Wyoming + 
+North Dakota + South Dakota + Nebraska + Iowa.
+<p>
+<LI><b>Question:</b> Amy starts at the meeting point of Montana, Idaho,
+and Wyoming. She travels along the Idaho-Wyoming border to Utah, then
+continues on the eastern border of Utah until she reaches the four-state
+point. She then travels east along the northern borders of New Mexico, 
+Oklahoma, and Arkansas to the Mississippi River. She travels upstream
+on the Mississippi to the northeast corner of Iowa. She travels west
+on the northern border of Iowa to South Dakota. She travels south
+on the Iowa/South Dakota border, then travels
+west along the southern border  of South Dakota to its southwest corner.
+Then she makes a right turn and travels north on the western borders of South
+and North Dakota to Canada. She turns left and travels along the US/Canada
+border to the southeast corner of Alberta. She turns right, heading
+into Canada, and follows the border of Alberta until it returns to the
+US. She travels west on the southern border of British Columbia to
+the northwest corner of Montana. She turns left and heads into the
+US, following the Montana border back to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 890744 square miles, 2307027 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Alberta + Montana + Wyoming + Colorado + Nebraska + Kansas + Missouri + Iowa 
+
+<p> 
+<LI><b>Question:</b> (Small imprecision corrected.)
+Andy starts at the southeast corner of Colorado.
+He travels due north to the northeast corner of Colorado. He makes a left
+turn and travels due west to the southwest corner of Wyoming. He continues
+on the border of Wyoming to South Dakota. He travels north to the US/Canada
+border.  He travels west on the Canadian border to the southeast corner of 
+British Columbia. He turns into Canada and follows the eastern border
+of British Columbia to its northernmost point. He travels due east to the 
+northeast corner of Saskatchewan. He travels due south to the US border.
+He turns left and travels along the US/Canada border to Minnesota. He 
+travels south on the western border of Minnesota to Iowa. He travels east
+on the northern border of Iowa, then continues on the border of Iowa to
+Nebraska. He continues on the border of Missouri 
+until he reaches the southeast corner of Kansas.
+From there he travels due west to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -712894 square miles, -1846395 square km <br>
+<b>Explanation:</b> Clockwise.
+Wyoming + Nebraska + Kansas + Iowa + South Dakota + North Dakota + Saskatchewan
++ Alberta
+
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the southeast corner of Kansas and heads
+due west to the southwest corner of Utah. He continues on the border of
+Utah to Idaho, then makes a left turn and follows the border  of Idaho
+to the Canadian border. He travels east on the Canadian border to the
+northeast corner of North Dakota. He continues on the border of North
+Dakota until reaching Montana. He travels south along the eastern border 
+of Montana to the northeast corner of Wyoming. He follows the border
+of Wyoming with Montana, Idaho, Utah, Colorado, and Nebraska until reaching
+the southwest corner of South Dakota. He continues on the border of Nebraska
+to the northeast corner of Kansas, then travels along the eastern border
+of Kansas and returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -649926 square miles, -1683308 square km <br>
+<b>Explanation:</b> Clockwise.
+North Dakota + Montana + Idaho + Utah + Colorado + Nebraska + Kansas.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the meeting point of Montana, Wyoming,
+and South Dakota. She travels along the border of South Dakota with Montana,
+then continues on the border of South Dakota until she reaches the northeast
+corner of the state. She travels north on the Minnesota border until 
+she reaches the US/Canada border. Then she turns 
+right, and travels on the border until she reaches Ontario.
+She makes a left turn into
+Canada and follows the Ontario border to Hudson Bay. She follows the
+coast of Hudson Bay northwest until she reaches Nunavut. She turns inland
+and travels due west to the northeast corner of Alberta. She travels
+due south to the US border. There she makes a right turn and travels
+west to the northwest corner of Idaho. She continues on the border of Idaho
+until she reaches Wyoming. There she makes a right turn along the
+Wyoming/Utah border. She follows
+the border of Wyoming back to her starting point. <br>
+What is the signed area enclosed by the path? 
+<br> <b>Answer:</b>901433 square miles, 2334711 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Idaho + Saskatchewan + Montana + Wyoming + North Dakota + Manitoba 
+
+
+<p>
+<LI><b>Question:</b> Andy starts at a point along the border of Montana
+and British Columbia. He travels due east until he reaches Minnesota. He 
+makes a right turn and travels south then east on the border of Minnesota
+until he reaches the Mississippi River. He travels downstream on the
+Mississippi until he reaches Arkansas. He continues on the border of
+Missouri to the northeast corner of Oklahoma. He travels due west to
+the southwest corner of Utah. He continues on the border of Utah to the 
+point where Utah meets Colorado and Wyoming. He continues on the border
+of Colorado with Wyoming and Nebraska. He continues on the border of
+Nebraska until he is again at the border of Wyoming. He makes a right turn
+and follows the border of Wyoming until he reaches Montana. He makes 
+a left turn and follows the border of Montana until he returns to his 
+starting point. <br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -692105 square miles, -1792552 square km <br>
+<b>Explanation:</b> Clockwise.
+Utah + Colorado + Kansas + Missouri + Iowa + South Dakota + North Dakota
++ Montana
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the mouth of the Rio Grande. She travels
+inland along the US-Mexico border to the southwest corner of New Mexico.
+She travels due north to the four-state point, then travels east on the 
+southern border of Colorado to Kansas. She travels north then east on the
+border of Kansas to Missouri. She continues on the border of Nebraska to again
+reach Colorado. She makes a right turn and goes west to the northwest
+corner of Colorado. She continues on the border of Wyoming to the southeast
+corner of Montana.  She then turns and travels due north to the
+southwest corner of North Dakota. From there she goes due east to the
+southeast corner of North Dakota. She travels south, then west, along
+the border of Minnesota to the Mississippi River. She travels downstream
+on the Mississippi to Louisiana. She then follows the Louisiana/Mississippi
+border
+south and east to the Gulf of Mexico. She then turns right and follows the 
+coast of the Gulf west and south to return to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -942469 square miles, -2440995 square km <br>
+<b>Explanation:</b> Clockwise.
+Wyoming + South Dakota + Iowa + Kansas + Missouri + New Mexico + Texas +
+Oklahoma + Arkansas + Louisiana.
+
+
+<p>
+<LI><b>Question:</b> Andy starts at a point on the boundaries of Utah with 
+Nevada. He travels south on the eastern borders of Nevada and California to 
+Mexico. He makes a left turn and travels east on the Mexico border until
+he reaches Texas. Then he continues straight on the Texas border with 
+New Mexico. He continues on the Texas border to the northwest corner of
+Louisiana. He travels across the northern border of Louisiana to the 
+Mississippi River. He travels north on the river to the northeast corner
+of Iowa. He follows the Iowa border west then south to the northeast
+corner of Nebraska. He goes south on the Nebraska border to Kansas. He travels
+along the border of Kansas with Missouri, then continues on the border
+of Kansas until he reaches the westmost point of the Kansas/Nebraska border.
+He travels along the borders of Nebraska with Colorado and Wyoming.
+He continues on the border of Wyoming to the easternmost point of the 
+border of Utah with Idaho. He makes a right turn and travels west then 
+south on the border
+of Utah, and returns to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 771441 square miles, 1998032 square k <br>
+<b>Explanation:</b> Counter-clockwise.
+Arizona + New Mexico + Utah + Wyoming + Colorado + Oklahoma + Arkansas
++ Missouri + Iowa
+<p>
+<LI><b>Question:</b> 
+Amy starts at the southernmost point of the 
+Mississippi/Louisiana border. She travels inland along the western
+borders of Mississippi, Tennessee, Kentucky, and Indiana, arriving at Lake
+Michigan. She goes along the Illinois coast of Lake Michigan, then 
+travels west on the southern border of Wisconsin, and north on its
+western border, to the southeast corner of Minnesota. She travels along the southern
+and western borders of Minnesota to the 
+southeast corner of North Dakota. She travels along the border of South
+Dakota west and south to the northeast corner of Wyoming. She then travels
+on the borders of Wyoming with Montana, Idaho, and Utah to the northwest 
+corner of Colorado. She follows the border of Colorado with Wyoming and 
+Nebraska to Kansas. She travels along the border of Kansas with Nebraska, 
+Missouri, and Oklahoma, and then along the southern border of Colorado to 
+the four-state point. She travels south to the Mexican border, then along
+the borders of New Mexico and Texas with Mexico, and then north and east
+on the US coast of the Gulf of Mexico to return to the starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 993877 square miles, 2574141 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+New Mexico + Texas + Oklahoma + Louisiana + Arkansas + Missouri +
+Illinois + Iowa + South Dakota + Wyoming + Nebraska
+
+<p>
+<LI><b>Question:</b> Andy starts at the meeting point of Mexico, Arizona,
+and New Mexico. He travels due north to the southeast corner of Utah, then
+continues east on the border of Colorado until he reaches the northwest corner
+of Oklahoma. He travels south on the west border of the panhandle, then 
+continues on the border of Oklahoma to the southeast corner of Kansas.
+He travels north on the east border of Kansas and continues on the border
+of Kansas to its northwest corner. He travels on the Nebraska/Colorado border
+to Wyoming. He travels north on the eastern border of Wyoming and Montana
+to the Canadian border. He travels east on US/Canada border to Minnesota.
+He travels along the border of Minnesota with North Dakota, South Dakota,
+and Iowa. He travels south on the eastern border of Iowa, Missouri, and Arkansas
+to Louisiana. He turns west on the Arkansas-Louisiana border 
+and follows the Louisiana border to the Gulf of Mexico. He turns right
+and travels along the coast of  the Gulf of Mexico to the Mexican border.
+He then turns inland and travels along the border of Mexico until he 
+reaches his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 792759 square miles, 2053246 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+New Mexico + Texas + Arkansas + Missouri + Iowa + Nebraska + South Dakota
++ North Dakota
+
+<p>
+<LI><b>Question:</b> Amy starts at the northeast corner of Colorado and heads
+south to the southeast corner. She makes a left turn and travels along the
+northern border of Oklahoma to Missouri, then continues on the border of 
+Oklahoma until reaching the southern border of Colorado. She travels due west
+along the whole length of the Colorado/New Mexico border, then continues on
+the New Mexico border until she reaches Mexico. She travels along the border
+of Mexico with New Mexico and Texas to the Gulf of Mexico, then on the US coast
+of the Gulf until she reaches the state of Mississippi. She travels north
+on the western borders of Mississippi, Tennessee, Kentucky, and Illinois
+until she reaches the southeast corner of Iowa. She follows the border
+of Iowa with  Missouri, Nebraska, and South Dakota. She continues on the border
+of South Dakota until she reaches Wyoming. She goes due west to the northwest
+corner of Wyoming, then south along the entire western border of Wyoming, then
+travels due east to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  893645 square miles, 2314541 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+New Mexico + Texas + Louisiana + Arkansas + Missouri + Kansas + Nebraska 
++ South Dakota + Wyoming.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the junction of the Mississippi and Ohio
+rivers. She travels upstream on the Ohio until she reaches West Virginia.
+She heads south on the eastern borders of Kentucky, Tennessee, and Alabama,
+to the border of Florida. She continues west on the border of Florida to the 
+Gulf of Mexico. She goes west along the Gulf coast 
+to the border of Mexico. She goes inland on the Mexico/Texas
+border to New Mexico. She makes a sharp right turn and follows the border of
+New Mexico to the southwest corner of the Oklahoma panhandle. She travels 
+along the border of Oklahoma with Texas, and then continues on the border 
+of Oklahoma to the northeast corner of New Mexico. She goes due west
+until reaching the southwest corner of Utah. She continues on the border
+of Utah to Colorado. She travels along the borders of Colorado, Kansas and
+Missouri with Wyoming, Nebraska, Iowa, and Illinois, and returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -890715 square miles, -2306952 square km <br>
+<b>Explanation:</b> Clockwise.
+Texas + Louisiana + Arkansas + Mississippi + Alabama  + Tennessee + 
+Kentucky + Missouri + Kansas + Colorado + Utah.
+<p>
+<LI><b>Question:</b> Andy starts at the southernmost point of the border
+of Texas and Louisiana. He travels north on the eastern borders of
+Texas and Oklahoma, then west on the northern border of Oklahoma, then
+south on the western border of Oklahoma, until he is again at the Texas 
+border. From there he continues on the border of New Mexico until reaching
+Arizona. He travels west on the US/Mexico border to the point where it reaches
+California, then continues on the Arizona border to the southeast corner
+of Utah. He travels along the border of Utah with Colorado and Wyoming
+to Idaho, then continues on the Wyoming border to the northeast corner
+of Wyoming. He makes a left turn, and travels around the border of South
+Dakota to the northwest corner of Iowa. He travels east on the border
+of Iowa to the border of Wisconsin, then travels south on the eastern
+border of Iowa, Missouri, Arkansas, and Louisiana to the Gulf of Mexico.
+He then returns on the Louisiana coast to the starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -901154 square miles, -2333989 square km <br>
+<b>Explanation:</b> Clockwise. Arizona + New Mexico + Colorado + Wyoming +
+Kansas + Nebraska + South Dakota + Louisiana + Arkansas + Missouri +
+Iowa.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the westernmost point of the Ontario/US 
+border. She travels west along the northern border of Minnesota to the northeast
+corner of North Dakota, and continues on the border of North Dakota with
+Manitoba and Saskatchewan to the northwest corner. She continues on the 
+border of North Dakota to Minnesota. She turns right and travels on the
+border of Minnesota to its southwest corner. She travels 
+east on the southern border of Minnesota to Wisconsin. She travels along
+the border of Iowa with Wisconsin and Illinois to the southeast corner of
+Iowa, then continues on the border of Iowa until reaching Nebraska.
+She turns left and follows the border of Nebraska until she reaches
+Wyoming. She travels due west on the border of Wyoming then continues on
+the border of Wyoming travelling north to the border of Montana. She 
+follows the border of Montana with Idaho and Alberta to the southwestern
+corner of Saskatchewan. She travels north to the southern border
+of Northwest Territories then due east to Hudson Bay. She travels
+along the Manitoba coast of Hudson Bay until she reaches Ontario. She then
+travels inland on the border of Ontario and returns to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -957902 square miles, -2480966 square km <br>
+<b>Explanation:</b> Clockwise.
+Wyoming + Montana + Saskatchewan + Manitoba + South Dakota + Nebraska + Iowa
+
+<p>
+<LI><b>Question:</b> Amy starts at the southwest corner of Kansas.
+She travels due east to the border of Missouri. 
+She continues on the border of Missouri with Oklahoma, Arkansas, 
+Tennessee, and Kentucky, to the southernmost point of Illinois. She continues
+on the border of Kentucky to the southwest corner of Indiana.
+She travels north
+on the western border of Indiana to Lake Michigan. She travels along the Lake
+Michigan shore of Illinois to Wisconsin. She travel along the border of
+Wisconsin with Illinois and Iowa to the northeast corner of Iowa.
+She travels west on the northern border of Iowa, then continues on the Iowa
+border to Nebraska. She travels west on the Nebraska/South Dakota border
+and continues on the South Dakota border
+until she returns to Minnesota. She travels
+north on the border of Minnesota to Canada. She travels west on the US/Canada
+border to the easternmost point of the northern border of Idaho. She travels
+along the borders of Idaho, Utah, and Colorado with Montana and Wyoming to the
+southeast corner of Wyoming. She continues on the border of Colorado to her 
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 586799 square miles, 1519809 square km <br>
+<b>Explanation:</b> Counter-clockwise 
+Montana + Wyoming + Nebraska + Kansas + Missouri + Iowa + Illinois
+
+<p>
+<LI><b>Question:</b> 
+Amy starts on the northmost point of 
+the Illinois shore of Lake Michigan. She travels west on the northern border
+of Illinois then continues on the Illinois border to Missouri. She travels
+west then north on the border of Iowa to Minnesota.
+She continues north on the western border of Minnesota to the 
+Canadian border. She travels west to the northwest corner of North Dakota.
+She then travels south on the eastern borders of Montana and Wyoming. She
+travels east then south on the border of 
+Colorado, to the panhandle of Oklahoma. She travels west to the northwest
+corner of the panhandle; then she continues
+on the border of Oklahoma to Arkansas. She travels south on the border
+of Texas to the northwest corner of Louisiana. She continues on the 
+Arkansas border until she reaches Tennessee. She turns right on the
+southern border of Tennessee and follows
+the border of Tennessee to Kentucky. She makes a hard right and travels
+along the eastern border of Kentucky and Indiana to the border of 
+Michigan. She travels along the Indiana/Michigan border until she
+returns to Lake Michigan. She continues along the Indiana and Illinois
+shore of the lake to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 586799 square miles, 1519809 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+North Dakota + South Dakota + Nebraska + Kansas + Oklahoma + Missouri
++ Arkansas + Tennessee + Kentucky + Indiana + Illinois 
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the northeast corner of North Dakota.
+He travels south to the southeast corner. He travels west along the border
+between North and South Dakota,
+then continues along the border of South Dakota until he reaches 
+Iowa. He makes a right turn and travels south to the border of Missouri.
+He then makes a left turn and travels east on the northern border of
+Missouri to the Mississippi river. He travels downstream along the 
+river to the northern border of Arkansas. He travels west along the 
+northern borders of Arkansas, Oklahoma, and New Mexico to the
+northwest corner of New Mexico. He continues on the Colorado border to the
+northwest corner of Colorado. He continues on the Utah border to the
+southeast corner of Idaho. He travels along the border of Idaho with
+Wyoming and Montana to the Canadian border. He travels east on the US/Canada
+border until he returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -648980 square miles, -1680858 square km <br>
+<b>Explanation:</b> Clockwise.
+North Dakota + Montana + Wyoming + Colorado + Nebraska + Kansas + Missouri. 
+
+<p>
+<LI><b>Question:</b> Amy starts at
+the four-state point. She travels east on the 
+southern border of Colorado to Kansas. She travels north then east on the
+border of Kansas to Missouri. She travels south on the western border
+of Missouri and Arkansas to the southeast corner of Oklahoma. She continues
+on the border of Oklahoma to the eastern border of New Mexico. She continues
+along the Texas border to Mexico. She travels west on the US/Mexico border
+to the border of California. She travels north along the western border
+of Arizona and Utah to Idaho. She travels east and north along the borders
+of Idaho, Montana, and North Dakota with Utah, Wyoming, and South Dakota
+until she reaches Minnesota. She travels south on the western border of 
+Minnesota then east on its southern border to the northeast corner of
+Iowa. She travels south on the western border of Wisconsin and continues
+on the border of Wisconsin until she reaches Lake Michigan. She travels
+along the Illinois coast of Lake Michigan, then south along the border
+of Indiana with Illinois. She travels along the border of Indiana and Kentucky
+and continues on the border of Kentucky
+until she reaches Tennessee. She makes a sharp left turn, and travels 
+along the Tennessee/ Virginia border until she reaches North Carolina.
+She continues on the border of Tennessee to the northeast corner of Mississippi.
+She travels south on the Mississippi/Alabama border to the Gulf of Mexico.
+She travels the length of the Mississippi and Louisiana shores 
+of the Gulf of Mexico, then turns
+inland and continues to follow the border of Louisiana until it again meets
+Mississippi. She follows the Mississippi River upstream to the southeast
+corner of Iowa. She travels along the Missouri/Iowa border, continues on
+the Iowa border to the northeast corner of Nebraska, and continues
+on the Nebraska border to Wyoming. She travels south then west along the 
+Wyoming border to Utah and then travels south to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -938205 square miles, -2429951 square km <br>
+<b>Explanation:</b> Clockwise.
+Kansas + Oklahoma + New Mexico + Arizona + Utah + Wyoming + South Dakota +
+Iowa + Illinois + Kentucky + Tennessee + Mississippi + Louisiana
+
+<p>
+<LI><b>Question:</b> Andy starts at the southwest corner of Utah. He travels
+east until he reaches Missouri. He makes a right turn and follows the
+Missouri border until he reaches Illinois. He travels along the 
+borders of Illinois with Kentucky, then continues on the Illinois border
+until he reaches Missouri again.
+He travels west along the length of the northern border of
+Missouri. When he reaches Nebraska he makes a left turn and follows the
+border of Nebraska to Wyoming. He travels west on the Colorado/Wyoming border,
+and continues on the Wyoming border until he reaches the northwest corner
+of Nebraska. He travels east the length of the Nebraska/South Dakota border.
+He travels north on the borders of Iowa and Minnesota to the southeast corner
+of North Dakota. He travels due west to Montana, turns right, and goes
+north to Saskatchewan. He travels west on the US/Canada border to the northwest
+corner of Idaho. He continues on the border of Idaho until he reaches the
+northwest corner of Utah. Then he travels due south, returning to his starting 
+point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 705041 square miles, 1826056 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+South Dakota + Montana + Idaho + Utah + Colorado + Kansas + Missouri +
+Illinois 
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northwest corner of Washington State.
+She travels down the Pacific coast to Mexico. She travels inland on the 
+US/Mexico border to Texas. Then she goes east on the Texas/New Mexico border,
+then continues on the Texas border until she reaches the meeting point of Texas,
+Oklahoma, and Arkansas. She continues on the Oklahoma border to the westernmost
+point of the southern border of Missouri. She travels east on the southern
+border of Missouri to the Mississippi River, then travels upstream on the 
+Mississippi to the southeast corner of Minnesota. She travels west on
+the southern border of Minnesota then north on its western border to
+North Dakota. She travels west on the southern border of North Dakota then
+north on its western border to the Canadian border.
+She travels west on the US/Canada border to the easternmost point of the 
+northern border of Idaho. She travels southwest and south 
+along the border of Idaho with
+Montana and Wyoming; then she continues on the border of Wyoming to southwest
+corner of South Dakota. She travels east on the southern border of South
+Dakota to Iowa.  She then travels 
+south along the western borders of Iowa and Missouri until
+she reaches the southeast corner of Kansas. She travels west to the border
+of Nevada. She turns left and follows the borders of Nevada with Arizona, 
+California, and Oregon until reaching the southwest corner of Idaho. She
+travels north along the western boundary of Idaho to the border of Canada,
+and then travels east on the US/Canada border to return to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1077267 square miles, 2790122 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Washington + Oregon + California + Arizona + New Mexico + Oklahoma + Missouri 
++ Iowa + South Dakota + Montana + Wyoming
+<p>
+<LI><b>Question:</b> Andy starts at the northwest corner of Montana. 
+He travels along the border of Montana with Idaho and Wyoming to the
+southeast corner of Montana. He continues on the border of Wyoming to the
+southeast corner of Idaho. He then travels west to the northwest corner of
+Nevada. He continues on the border of Nevada to the southwest corner of Utah. He
+travels east to the southeast corner of Kansas. He travels north along
+the eastern borders of Kansas, Nebraska, and South Dakota to the northwest
+corner of Iowa. He travels east on the northern border of Iowa to the
+Mississippi river. He travels downstream on the Mississippi 
+to the northern border of Louisiana. He travels west then south
+on the border of Louisiana until he reaches the Gulf of Mexico. He travels
+along the Texas shore of the Gulf until he reaches the border of Mexico.
+He travels the length of the US/Mexico border. He travels up the Pacific
+coast to the southwest corner of Washington State. He turns inland and travels
+east then north on the border of Washington State until he again reaches
+the border with Canada. He goes east and returns to his starting point
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1188535 square miles, -3078306 square km <br>
+<b>Explanation:</b> Clockwise.
+Wyoming + Idaho + Oregon + California + Arizona + New Mexico + Texas + Oklahoma
++ Arkansas + Missouri + Iowa 
+
+
+<p>
+<LI><b>Question:</b> Amy starts at the point on the Lake Michigan shore 
+where Wisconsin meets Illinois.
+She travels west on the southern border of Wisconsin until she reaches Iowa.
+She travels on the Iowa/Wisconsin border, then continues on the Iowa border
+until she reaches Nebraska. She travels along the border of Nebraska with
+South Dakota, Wyoming, and Colorado to the northwest corner of Kansas. She 
+travels south along the western border of Kansas to the
+border of Oklahoma. She turns right, going briefly west, then follows
+the border of Oklahoma to Arkansas. She goes south on the western border of
+Arkansas to Louisiana.  She travels along the northern border of
+Louisiana, then continues on the border of Louisiana to the Gulf of Mexico.
+She travels east on the Gulf coast until she reaches Florida. She travels
+inland on the west border of the Florida panhandle, then continues on 
+the Florida border to the Atlantic. She travels north on the Atlantic coast
+until she reaches Maryland. She travels inland on the Virginia/Maryland
+border and continues on the border of Virginia until she reaches Tennessee.
+She travels west on the Tennessee border to the Mississippi River. She briefly
+travels downstream on the river to the southernmost point of Missouri.
+She travels along the Arkansas/Missouri border, and continues on the 
+Missouri border to meet the Mississippi river again. She travels downstream on
+the Mississippi to the Ohio river. She travels upstream on the Ohio to
+Indiana. She travels north on the Indiana/Illinois border, then along 
+the Lake Michigan shore of Illinois until she returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 720347 square miles, 1865699 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Illinois + Iowa  + Nebraska + Kansas + Oklahoma + Arkansas + Mississippi +
+Alabama + Georgia + South Carolina + North Carolina + Virginia + Tennessee
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the southernmost point of Nevada. He
+travels north on the border of Nevada with Arizona and Utah to the 
+northwestern corner of Utah. He travels east on the northern border of
+Utah to Wyoming. He goes north on the Wyoming border and continues
+on the Wyoming border to the southwest corner of South Dakota. He continues on
+the southern border of South Dakota to its southeast corner. He then makes
+a right turn and travels south on the eastern borders of Nebraska and
+Kansas to the northern border of Oklahoma. He travels west on the northern
+border of Oklahoma to the southeast corner of Colorado. He makes a right
+turn heading north, and he follows the border of Colorado 
+until he comes to the northwest 
+corner of the panhandle of Oklahoma. He turns right, and travels south
+on the western border of the panhandle, then continues on the border of 
+Oklahoma until he reaches Arkansas. He turns right and follows the border
+of Arkansas to the Mississippi River. He follows the river upstream to
+the northeast corner of Iowa. He turns left and follows the northern
+border of Iowa to South Dakota. At the South Dakota border, he turns right
+and goes north along the eastern borders of South and North Dakota
+to the Canadian border.  He travels west
+on the US-Canada border to the northeast corner of Washington State.
+He travels south on the eastern borders of Washington and Oregon to the border
+of Nevada. He follows the border of Nevada with Oregon and California and
+returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 842147 square miles, 2181161 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Nevada  + Idaho + Montana + South Dakota + North Dakota
++ Iowa + Missouri + Arkansas + Oklahoma + Colorado
+
+<p>
+<LI>
+<p> <b> Question:</b> 
+Amy starts at the northeast corner of Florida. She travels west on the
+northern border of Florida then south on the west border of the panhandle
+to the Gulf of Mexico. She travels west on the Gulf coast to Mexico.
+She travels inland on the US/Mexico border to Arizona. She travels due
+north to the southern border of Wyoming. She travels east on the southern
+border of Wyoming to Nebraska. She turns left and travels north on the
+western border of Nebraska, then continue on the border of Nebraska to 
+the northwest corner of Missouri. She turns left and travels east along
+the northern border of Missouri, then continues on the border of Missouri
+to the northeast corner of Kansas. She travels west along the northern
+border of Kansas, then south on its western border. She turns right heading west
+on the northern border of Oklahoma. She continues on the border of Oklahoma
+to Arkansas. She heads south on the border of Arkansas and continues on
+the border of Arkansas to the southwest corner of Tennessee. She travels
+east on the southern border of Tennessee and North Carolina to South
+Carolina. She travels southeast along the southwest border of South
+Carolina to the Atlantic. She travels south on the Atlantic coast and
+returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -845673 square miles, -2190293 square km <br>
+<b>Explanation:</b> Clockwise.
+Missouri + Nebraska + Colorado + New Mexico + Texas + Louisiana +
+Mississippi + Alabama + Georgia.
+
+<LI><b>Question:</b> 
+Andy starts at the southernmost point of Nevada. He
+travels north on the border of Nevada with Arizona and Utah to the 
+northwestern corner of Utah. He travels east on the northern border of
+Utah to Wyoming. He goes north on the Wyoming border and continues
+on the Wyoming border to the southwest corner of South Dakota. He continues on
+the southern border of South Dakota to its southeast corner. He then makes
+a right turn and travels south on the eastern borders of Nebraska and
+Kansas to the northern border of Oklahoma. He travels west on the northern
+border of Oklahoma to the southeast corner of Colorado. He makes a right
+turn and follows the border of Colorado until he comes to the northwest 
+corner of the panhandle of Oklahoma. He turns right, and travels south
+on the western border of the panhandle, then continues on the border of 
+Oklahoma until he reaches Arkansas. He turns right and follows the border
+of Arkansas to the Mississippi River. He follows the river upstream to
+the southwest corner of Wisconsin. He travels east on the northern border
+of Illinois, then south on its eastern border to the southernmost 
+point of Indiana. He makes a left turn
+and travels along the border of Kentucky until reaching Tennessee. There
+he makes a left turn and follows the border of Tennessee until he reaches 
+the northwest corner of Alabama. He travels south on the Alabama/Mississippi
+border to the Gulf of Mexico. He turns west and follows the coast of 
+Gulf of Mexico to the border of Mexico. He follows the US/Mexico border
+to the border of California. He then travels north on the border of California
+with Arizona and returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<br> 
+<b>Answer:</b> -1079113 square miles, -2794903 square km <br>
+<b>Explanation:</b> Clockwise.
+Kansas + Nebraska + Wyoming + Utah + Arizona + New Mexico + Texas + Louisiana
++ Mississippi + Tennessee + Kentucky + Illinois 
+
+
+<p>
+<LI><b>Question:</b> Andy starts at the northwest corner of Montana. 
+He travels along the border of Montana with Idaho and Wyoming to the
+southeast corner of Montana. He continues on the border of Wyoming to the
+southeast corner of Idaho. He then travels west to the northwest corner of
+Nevada. He continues on the border of Nevada to the southwest corner of Utah. He
+travels east to the southeast corner of Kansas. He travels north along
+the eastern borders of Kansas, Nebraska, South Dakota, and North Dakota
+to the Canadian border. He travels west to the southwest corner of Manitoba.
+He travels north on the Manitoba/Saskatchewan border to the southwest
+corner of Nunavut. He travels along the border of Saskatchewan with 
+Northwest Territories, then due south to the border of the US. He makes
+a right turn and travels west back to his starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 934712 square miles, 2420904 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Nevada + Utah + Colorado + Kansas + Nebraska + South Dakota + Montana +
+Saskatchewan
+<p>
+<LI><b>Question:</b> 
+Andy starts at the point where the state of Mississippi and
+Louisiana meet the Gulf of Mexico. He travels north on the Mississippi/Louisiana
+border to the southwest corner of Tennessee. He travels along the southern border
+of Tennessee and continues on the border of Tennessee until he reaches 
+Kentucky. He makes sharp right on the Kentucky/Virginia border and continues 
+on the Kentucky border until he reaches the Indiana/Ohio border. He travels
+north on the western border of Ohio, then continues east on the northern
+borders of Indiana and Illinois to the Mississippi river. He travels downstream
+on the river to southmost point of Missouri. He then heads west along the 
+Missouri border, and continues on the Missouri border to the southwest 
+corner of Iowa. He travels north on the Iowa border to the southeast corner
+of South Dakota. He makes a left turn and travels west to its southwest corner.
+He then travels south on the western borders of Wyoming, Colorado, and
+New Mexico and continues on the border of New Mexico  to Mexico. 
+He travels along the Texas/Mexico
+border to the Gulf of Mexico. He then travels along the Texas and Louisiana
+coasts of the Gulf of Mexico until he returns to his starting point.
+<br> What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 772395 square miles, 2000503 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Texas + Oklahoma + Kansas + Nebraska + Louisiana + Arkansas + Tennessee
++ Kentucky + Illinois + Indiana.
+
+<p>
+<LI><b>Question:</b> Andy starts at the point where Iowa, South Dakota,
+and Minnesota meet. He travels east along the Iowa border and continues on
+the Iowa border to the northwest corner of Nebraska.  
+He travels west along the border
+of Nebraska and South Dakota. He continues on the Nebraska border until
+reaching Missouri. He heads south then east along the Missouri border to the
+Mississippi river. He travels downstream on the river to the northern border
+of Louisiana. From there he travels west to the border of Texas. He turns
+right and follows the border of Texas with Arkansas and Oklahoma
+to the southern end of the western border of the Oklahoma panhandle. He
+travels north on the Oklahoma border to Colorado. He makes a left turn and
+travels on the Colorado border with New Mexico and Utah until he
+reaches Wyoming. At the border of Wyoming, he makes a left turn and follows
+the border of Wyoming until reaching Montana. He continues along the Idaho border
+to the Canadian border. He heads east along the US/Canada border to the
+northwest corner of Minnesota. He makes a right turn and follows the border
+of Minnesota back to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -758391 square miles, -1964233 square km <br>
+<b>Explanation:</b> Clockwise.
+Arkansas + Oklahoma + Kansas + Colorado + Wyoming + Montana + North Dakota +
+South Dakota + Iowa.
+<p>
+<LI><b>Question:</b> 
+Amy starts at the westernmost point of Texas. She travels 
+along the border of New Mexico with Texas and Oklahoma to the border of
+Colorado. She turns right and continues east then south on the border of 
+Oklahoma to the border of Arkansas. She travels along
+the northern border of Arkansas to the  Mississippi River. She travels upstream
+on the river to the northern border of Missouri. She travels west on the 
+northern borders of Missouri then south on the western border
+until she reaches Kansas. She turns west, and
+follows the Nebraska border to the meeting point of Nebraska, South Dakota,
+and Iowa.  She travels along the border of Iowa with South Dakota, Minnesota, and
+Wisconsin to the northern border of Illinois. She travels along the northern
+borders of Illinois, Indiana, and Ohio to Pennsylvania. She continues on the 
+Ohio border to Kentucky. There she turns left and follows the eastern border
+of Kentucky to Tennessee. She makes a sharp left turn and follows 
+the Tennessee/Virginia border to its easternmost point, 
+then continues on the Tennessee border until she
+reaches the Mississippi river. She travels downstream on the river to the
+northern border of Louisiana. She travels along the borders of Louisiana with
+Arkansas and with Texas until she reaches the Gulf of Mexico. She travels
+along the Texas coast of the Gulf to the border of Mexico; then turns inland and
+travels along the US/Mexico border until she returns to her starting position.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -739958 square miles, -1916491 square km <br>
+<b>Explanation:</b> Clockwise.
+Texas + Oklahoma + Arkansas + Tennessee + Kentucky + Ohio + Indiana +
+Illinois + Iowa + Nebraska.
+
+<p>
+<LI><b>Question:</b> Andy starts at the four-state point and travels south to
+the US/Mexico border. He then travels along the border of Mexico with New
+Mexico and Texas to the Gulf of Mexico. He travels along the Texas and Louisiana
+coasts of the Gulf until he reaches the state of Mississippi. He travels along the border of Louisiana and Arkansas with Mississippi. He continues on the Arkansas
+border to the southeast corner of Oklahoma. He travels along the border of
+Oklahoma with Texas, New Mexico, Colorado, and Kansas to the border of 
+Missouri. He continues north on the border of Missouri with Kansas and
+Nebraska, then turns east and travels along the northern border of Missouri
+to Illinois. He travels downstream on the Mississippi river to the
+southmost point of Illinois. He continues on the border of Illinois until he
+is again at the border of Iowa. He turns right, and follows the border of Iowa
+to Nebraska. He makes another right turn and follows the northern border of 
+Nebraska to Wyoming. He travels west on the northern border of Colorado and
+continues on the border of Colorado to return to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 865715 square miles, 2242202 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Arkansas + Louisiana + Texas + New Mexico + Colorado + Kansas + Nebraska + Iowa +
+Illinois
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at a point on the border of Indiana and
+Michigan. She travels west along the border of Michigan with Indiana
+to Lake Michigan. She travels on the Indiana and Illinois coasts of
+Lake Michigan to the southeast corner of Wisconsin. She travels west along
+the southern borders of Wisconsin and north on the Wisconsin/Iowa border
+to Minnesota. She travels west on the southern border of Minnesota to 
+South Dakota. She then 
+turns right up the Minnesota/South Dakota border, and continues on the 
+South Dakota border to the northwest corner of Nebraska.  She continues going
+south on the western borders of Nebraska and Kansas to Oklahoma. She traverses
+the short Colorado/Oklahoma border, then continues on the border of Oklahoma to
+the southeast corner of Kansas. She continues on the Missouri border to
+the Mississippi river. She travels downstream on the river until it separates
+from the Louisiana/Mississippi border. She continues on the border of Louisiana
+to the
+Gulf of Mexico. She travels east on the Gulf coast of Mississippi and Alabama
+to Florida. She heads inland on the Florida/Alabama border, 
+then follows the northern border of Florida to the Atlantic coast. She then
+goes up the Georgia coast to South Carolina. She follows the Georgia/South
+Carolina border inland to North Carolina. She continues on the Georgia border
+to Tennessee. She makes a hard right and follows the
+western borders of Tennessee, Kentucky, and Indiana until she reaches Michigan.
+There she makes a left turn and returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 696312 square miles, 1803448 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Georgia + Alabama + Mississippi + Tennessee + Kentucky + Indiana + Illinois + 
+Iowa + South Dakota + Nebraska + Kansas + Oklahoma.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the northwest corner of Utah. He travels
+south along the eastern border of Nevada and California until he reaches 
+Mexico. He travels along the border of Mexico with Arizona, New Mexico, and 
+Texas to the Gulf of Mexico. He walks along the Texas and Louisiana coasts
+of the Gulf of Mexico until he reaches Mississippi. He continues inland on 
+the border of Louisiana until he reaches the southwest corner of Arkansas.
+He continues on the border of Arkansas to the southeast corner of Oklahoma.
+He makes a left turn and heads west along the southern border of Oklahoma.
+He continues on the border of Oklahoma until he has again reached Arkansas.
+He travels the length of the northern border of Arkansas to the Mississippi
+River. He travels upstream on the Mississippi to the northeast corner of Iowa.
+He makes a left turn and travels along the border of Minnesota, South Dakota,
+Wyoming and Idaho with Iowa, Nebraska, Colorado, and Utah, until he has returned\
+to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1024792 square miles, 2654211 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Arizona + New Mexico + Texas + Louisiana + Utah + Colorado + Kansas + Missouri
++ Nebraska + Iowa
+
+
+<p>
+<LI><b>Question:</b> Amy starts at the northeast corner of Tennessee and
+travels west along the Tennessee/Kentucky border to the Mississippi River.
+She travels upstream along the Mississippi to the northeast corner of Iowa.
+She travels west on the southern border of Minnesota, and then continues
+on the border of Minnesota until she reaches the southeast corner of 
+North Dakota. She then travels west to the border of Montana. She travels south
+and west on the border of Montana until she reaches Idaho. 
+She then  continues on the border
+of Wyoming to the northwest corner of Colorado. She travels due south
+to the Mexico border. She travels on the border of Mexico with New Mexico
+until reaching Texas. She continues on the border of New Mexico to the
+southern end of the western border of the panhandle of Oklahoma. She makes
+a right turn, and travels along the boundary of Oklahoma with Texas and 
+Arkansas to the northwest corner of Arkansas. She continues on the border
+of Arkansas to the northern border of Louisiana. She continues on the border
+of Mississippi to the Gulf of Mexico. She travels along the Gulf coast of
+Mississippi and Alabama to the border of Florida. She then turns inland, and
+continues on the border of Alabama until she reaches Tennessee. She turns
+right, going eastward on the southern border of Tennessee, and continues on
+the border of Tennessee, until she returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 897658 square miles, 2324934 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+New Mexico + Colorado + Wyoming + Oklahoma + Kansas + Nebraska + South Dakota
++ Missouri + Iowa + Mississippi + Alabama + Tennessee
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the northeast corner of Tennessee. He 
+travels southwest on the border of Tennessee with North Carolina and then 
+continues west along the border of Tennessee to
+the northwest corner of Alabama. He turns left and
+travels south on the western border of Alabama. He then continues on the
+border of the state of Mississippi to its northwest corner. He
+travels upstream on the Mississippi River to the northeast corner of Arkansas.
+He continues along the border of Arkansas to the northwest corner of
+Louisiana. He travels south on the Louisiana/Texas border to the Gulf of
+Mexico. He then continues on the border of Texas to 
+Oklahoma. He travels first north, then east on the border of Oklahoma
+to the southeast corner of Colorado. He travels north, then west on the
+border of Colorado to the southeast corner of Wyoming. He travels north along
+the eastern borders of Wyoming and Montana to the border of Canada. He makes
+a right turn and travels east on the US/Canada border to the southwest 
+corner of Manitoba. He travels due north to the southwest corner of 
+Nunavut. He travels due east to Hudson Bay. He continues along the border
+of Manitoba to the US/Canada border. He travels west on the
+US/Canada border to North Dakota. He continues along the border of 
+Minnesota to the northeast corner of Iowa. He travels downstream on
+the Mississippi River until he reaches Tennessee. He then travels east
+on the northern border of Tennessee to return to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -1110951 square miles, -2877363 square km <br>
+<b>Explanation:</b> Clockwise.
+Texas + Oklahoma + Kansas + Nebraska + North Dakota + South Dakota +
+Manitoba + Iowa + Missouri + Tennessee + Mississippi
+<p>
+<LI><b>Question:</b>  
+Amy starts at the southeast corner of New Mexico (i.e. the
+southernmost point of its eastern border.) She travels north until she reaches
+Oklahoma. She continues on the Texas border until she reaches Louisiana. She 
+turns left and travels east on the Louisiana border to the Mississippi river.
+She continues on the Louisiana border until she reaches the Gulf of Mexico.
+She travels along the Mississippi and Alabama coasts of the Gulf until she
+reaches Florida. She turns inland and continues on the border of Alabama to the
+meeting point of Alabama, Georgia, and Tennessee. She travels west on the
+southern border of Tennessee to the Mississippi river. She travels upstream
+on the river to Missouri. She travels first west then north 
+on the border of Missouri to the southeast corner of Kansas. She 
+travels north on the eastern border of Kansas to the southeast
+corner of Nebraska. She travels west on the southern boundary of Nebraska
+to Colorado.  She travels on the border of Colorado with Nebraska, Wyoming,
+and Utah to the four state point. She travels west from there to Nevada.
+She travels south on the eastern border of Nevada and California to the border
+of Mexico. She travels along the borders of Arizona and New Mexico with Mexico
+and Texas until she returns to her starting point.
+
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 644425 square miles, 1669061 square km <br>
+<b>Explanation:</b>A Counter-clockwise.
+Arizona + New Mexico + Colorado + Kansas + Oklahoma + Arkansas + Mississippi
++ Alabama
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the northwest corner of California.
+He sets out south on the Pacific coast, and continues on the coast ---
+first the Pacific to the southern end of Baja California, then all the way around
+the coast of the Gulf of California, then continuing south and east
+on the Pacific coast --- until he reaches the border between Guatemala and
+El Salvador. He then travels northeast on the border of Guatemala with
+Honduras and El Salvador to the Caribbean Sea. He travels along the
+Caribbean coast of Guatemala and Belize, then continues on the coasts of
+the Caribbean and the Gulf of Mexico until reaching Louisiana. He travels
+north on the western border of Louisiana and Arkansas to the northwest
+corner of Arkansas. He continues on the border of Oklahoma to the meeting
+point of Oklahoma, Texas, and New Mexico. He continues on the border of New
+Mexico and Texas to US/Mexico border. He travels along the border of
+Mexico with New Mexico and Arizona to the southwest corner of
+California. He continues on the border of Arizona to the southwest corner
+of Utah, then due north to the border of Idaho, then due west to his starting 
+point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>1415288 square miles, 3665596 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Mexico + Guatemala + Belize + California + Nevada + Texas + Oklahoma.
+
+<p>
+<LI><b>Question:</b> Andy starts at the northeast corner of Colorado.
+He travels west along the Nebraska/Colorado border to the southeast
+corner of Wyoming. He travels due north to the US/Canada border.
+There he makes a left turn and travels west to the southeast corner
+of Alberta. He travels north along the eastern border of Alberta to
+Northwest Territories. He continues on the border of Saskatchewan until
+he is back on the US/Canada border. He makes a left turn and goes east
+along the border to the northwest corner of Minnesota. He travels south
+on the western borders of Minnesota and Iowa, then continues on the border
+of Iowa until he reaches the Mississippi River. He travels downstream on
+the Mississippi to the Ohio river.  He travels upstream on the Ohio river
+to West Virginia. He continues on the Kentucky border to Tennessee. He
+makes a sharp left turn, travels east on the northern border
+of Tennessee, and then continues on the border of Tennessee until he
+is again at the Mississippi river. He travels upstream on the Mississippi
+to the northeast corner of Arkansas.
+He travels west on the northern border of
+Arkansas and Oklahoma to the southwest corner of Kansas. From there he travels
+north to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -711066 square miles, -1841661 square k <br>
+<b>Explanation:</b> Clockwise.
+Kansas + Nebraska + South Dakota + North Dakota + Saskatchewan + 
+Missouri + Kentucky + Tennessee
+<p>
+<LI><b>Question:</b> 
+Amy starts at the confluence of the Ohio and Mississippi
+rivers. She travels briefly upstream on the Ohio to the meeting point of
+Illinois, Indiana, and Kentucky. She travels north on the eastern
+border of Illinois until she reaches Lake Michigan. She travels east
+on the northern borders of Indiana and Ohio to the border of
+Pennsylvania. She continues on the border of Ohio to Kentucky, crosses
+the Ohio River, and travels along the border of Kentucky with West
+Virginia and Virginia until she reaches Tennessee. There she makes a hard
+left and travels east on the northern border of Tennessee. When she
+reaches North Carolina she makes a hard right and continues on the border of 
+Tennessee until reaching the border of Georgia. She travels west on the northern
+border of Georgia then south on the
+Georgia/Alabama border to the northern border of Florida. There she turns 
+left, and follows the northern border of Florida east to the ocean. She turns
+south and follows the entire coastline of Florida, with the Atlantic 
+and with the Gulf of
+Mexico, until she reaches Alabama. She continues on the Gulf Coast
+to the border with Mexico. She turns inland and follows the border of Texas
+to the meeting of Texas, Oklahoma, and New  Mexico. She goes along the
+short borders of Oklahoma with New Mexico and with Colorado to the
+southwest corner of Kansas. She travels along the Kansas/Colorado
+border, then continues on the border of Kansas to the southwest
+corner of Missouri. She travels east on the southern border of Missouri
+to the Mississippi River, then travels upstream on the river to 
+her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -838090 square miles, -2170653 square km <br>
+<b>Explanation:</b> Clockwise.
+Texas + Oklahoma + Kansas+ Arkansas + Louisiana + Mississippi + Alabama
++ Florida + Tennessee + Kentucky + Indiana + Ohio
+
+<p>
+<LI><b>Question:</b> Andy starts at the southwest corner of Virginia. He
+travels along the border of Virginia with Kentucky and West Virginia until
+Maryland, then along the border of Maryland with West Virginia to the
+southern border of Pennsylvania. He travels west and north on the border
+of Pennsylvania to Lake Erie. He follows the Ohio coast of Lake Erie, then
+continues on the border of Ohio to the Ohio river. He travels downstream
+on the Ohio until it reaches the Mississippi, then upstream on the Mississippi
+to the northeast corner of Iowa. He continues on the border of Iowa to its
+southwest corner, then continues south on the western borders of Missouri and 
+Arkansas to the northern border of Louisiana. There he travels east to
+the Mississippi river. He travels upstream on the Mississippi to the southern
+border of Tennessee. He travels east on the southern border of Tennessee and
+then continues on the border of Tennessee until he returns to his
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 327274 square miles, 847640 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Ohio + West Virginia + Kentucky + Tennessee + Arkansas + Missouri + Iowa.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northeast corner of Ohio. She
+travels south along the western border of Pennsylvania to its southwest
+corner, then continues on the border of West Virginia until reaching
+Virginia. She then goes along the Virginia/Maryland border until she
+reaches the Atlantic coast. She travels south on the Atlantic coast
+until she reaches Florida. She travels west on the northern border
+of Florida, then south along the western border of the Florida panhandle
+to the Gulf of Mexico. She continues on the Gulf coasts of Alabama
+and Mississippi to the border of Louisiana,. She then continues
+on the border of Mississippi to the northern border of Louisiana. She
+travels west on the northern border of Louisiana to Texas. She travels
+north on the eastern borders of Texas, Oklahoma, Kansas, and Nebraska
+to the southeast corner of Iowa. She travels east on the southern border
+of Iowa to the Mississippi River. She travels upstream on the river
+to the northern border of Illinois, then continues on the border of
+Illinois until reaching the Ohio River. She travels downstream on the
+Ohio River to the Mississippi river, then downstream on the Mississippi to
+Tennessee.  She travels east on the northern border of Tennessee until
+she reaches Virginia, then continues on the border of Kentucky until she reaches
+Indiana. She crosses the Ohio river and goes north on the Ohio/Indiana border.
+She continues on the border of Ohio until she has returned to her starting
+point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -569820 square miles, -1475834 square km <br>
+<b>Explanation:</b> Clockwise.
+Ohio + West Virginia + Virginia + North Carolina + South Carolina + Georgia
++ Alabama + Mississippi + Tennessee + Arkansas + Missouri + Illinois 
+
+<p>
+<LI><b>Question:</b> Andy starts at the northwest corner of Missouri. 
+He travels east along the northern border of Missouri until he reaches the Mississippi River.
+He travels downstream on the Mississippi River to the junction with the Ohio.
+He travels upstream on the Ohio until he reaches the state of Ohio. He travels
+north on the Ohio/Indiana border to the border of Michigan. He continues west
+along the border of Indiana with Michigan. He then continues west on the Indiana 
+and Illinois coast of Lake Michigan. He goes west on the southern border of 
+Wisconsin and continues on the border of Wisconsin to Minnesota. He travels
+west on the southern border of Minnesota, then continues on the border of Iowa
+to Nebraska. He turns right and travels due west on the southern border of
+South Dakota, then continues on the border of Nebraska to the northwest corner
+of Kansas. He travels due south to Oklahoma. He makes a sharp right, travelling
+west along the northern border of the Oklahoma panhandle, and continues on
+the border of Oklahoma to Arkansas. He makes a right turn and travels south
+on the eastern border of Texas to the Gulf of Mexico. He travels along the
+Louisiana, Mississippi, and Alabama coast of the Gulf to Florida. He makes a
+left turn turning north along the western border of the Florida panhandle, and
+continues along the border of Alabama to Tennessee. He makes a right turn, heading
+eastward along the southern border of Tennessee. He continues  on the
+border of Tennessee to
+the Mississippi river. He travels downstream on the Mississippi to Arkansas. He
+then travels along the border of Missouri with Arkansas, and continues on the
+border of Missouri until he returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 620808 square miles, 1607893 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Nebraska + Kansas + Oklahoma + Arkansas + Louisiana + Mississippi + Alabama
++ Tennessee + Indiana + Illinois + Iowa.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the southwest corner of Tennessee.
+He travels east the whole length of the southern border of Tennessee then 
+continues on the border of Tennessee until he reaches Kentucky. At that
+point he makes a hard right, and continues on the eastern border of
+Kentucky until he reaches the Ohio River. He travels the length of the
+Ohio/West Virginia border. He continues on the West Virginia border until
+he reaches Virginia. He travels along the Virginia/Maryland border until
+reaching the Atlantic. He travels south on the Atlantic coast to Florida.
+He travels west on the northern border of Florida and continues on the
+border of Florida to the Gulf of Mexico. He travels along the Gulf coasts of
+Alabama, Mississippi, and Louisiana to the border of Texas. He travels 
+north on the eastern borders of Texas, Oklahoma, Kansas, and Nebraska to
+the northwest corner of Missouri. He continues travelling on the border
+of Missouri until reaching the Mississippi River. He travels downstream on the
+Mississippi until he returns to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -477768 square miles, -1237419 square km <br>
+<b>Explanation:</b> Clockwise.
+West Virginia + Virginia + North Carolina + South Carolina + Georgia +
+Alabama + Mississippi + Louisiana + Arkansas + Missouri
+
+<p>
+<LI><b>Question:</b> Amy starts at the southwest corner of Arkansas. She
+travels east along the southern border of Arkansas to the Mississippi River.
+She travels upstream on the Mississippi to the southwest corner of Tennessee.
+She travels east along the southern border of Tennessee, and continues 
+on the border of Tennessee until she reaches Arkansas again. She travels
+along the Arkansas/Missouri border to the northwest corner of Arkansas.
+She continues on the Missouri border until she is again at the Mississippi
+River. She travels along the Iowa/Illinois border, and continues on the Illinois
+border to Indiana. She travels east on the northern border of Indiana
+until she reaches Ohio. She travels south on the western border of Ohio to
+Kentucky. She turns left, and travels along the border of Kentucky with
+Ohio and West Virginia to Virginia. Then she travels along the border
+of Virginia with West Virginia and Maryland to the Atlantic. She travels
+south along the Atlantic coast to the border of Florida. She travels west
+on the northern border of Florida, and continues on the border of
+Florida until she reaches the coast of the Gulf of Mexico. She travels
+west on the Gulf coast to Texas. She continues north on the western border
+of Louisiana and returns to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -533293 square miles, -1381229 square km <br>
+<b>Explanation:</b> Clockwise. Louisiana + Mississippi + Alabama +
+Georgia + South Carolina + North Carolina + Virginia + Kentucky +
+Missouri + Illinois + Indiana
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the point where Alabama and Mississippi
+meet the Gulf of Mexico. He travels inland on the Alabama/Mississippi border to
+the northeast corner of Mississippi. He turns right and travels east on the 
+northern border of Alabama. He then continues on the border of Tennessee to
+the Mississippi River. He travels downstream along the Mississippi to the point
+where it turns into the interior of Louisiana, then continues along the
+Mississippi/Louisiana border to the Gulf of Mexico. He continues on the border
+of Louisiana to the border of Texas. He travels north on the eastern borders
+of Texas, Oklahoma, Kansas, and Nebraska to the northwest corner of Missouri.
+He travels east on the northern border of Missouri to the Mississippi River.
+He travels downstream along the Mississippi to the junction with the Ohio
+River. He travels upstream on the Ohio River until reaching West Virginia.
+He travels along the border of West Virginia with Kentucky to Virginia.
+He travels along the border of Virginia with West Virginia and Maryland
+to the Atlantic. He travels along the Atlantic coast to the southern end
+of Florida, then travels along the Gulf coast until he reaches his starting 
+point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -504905 square miles, -1307704 square km <br>
+<b>Explanation:</b> Clockwise.
+Florida + Alabama + Georgia + South Carolina + North Carolina + Virginia
++ Kentucky + Missouri + Arkansas + Louisiana.
+
+<p>
+<LI><b>Question:</b> Amy starts at the northwest corner of Iowa. She travels
+south on the western border of Iowa, Missouri, Arkansas, and Louisiana to
+the Gulf coast. She travels east on the Gulf coast of Louisiana and 
+Mississippi to Alabama. She travels north on the Mississippi/Alabama border
+to Tennessee. She turns left and travels west on the southern border of
+Tennessee. She continues on the border of Tennessee until she reaches the 
+northeast corner of Alabama. She travels south on the Alabama/Georgia border,
+and continues on the border of Georgia to the Atlantic. She travels north
+on the Atlantic coast until she reaches Maryland. She turns inland and follows
+the Maryland border to Pennsylvania. She continues west and north
+on the West Virginia/Pennsylvania border to Ohio. She travels west along
+the southern borders of Ohio and Indiana to Illinois. She travels north
+on the Illinois/Indiana border, then continues on the Illinois border until she
+reaches Iowa. She travels along the border of Iowa with Wisconsin and Minnesota
+to return to her starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 579084 square miles, 1499828 square km <br>
+<b>Explanation:</b> Counterclockwise.
+Iowa + Missouri + Arkansas + Louisiana + Mississippi + Illinois + Kentucky 
++ West Virginia + Virginia + North Carolina + South Carolina + Georgia
+
+<p>
+<LI><b>Question:</b> Amy starts at the westmost point of Virginia. She travels
+west on the northern border of Tennessee to the Mississippi River, then
+downstream on the Mississippi, then east on the southern border of 
+Tennessee to the northwest corner of Georgia. She travels south on
+the western border of Georgia to Florida and continues on the border of
+Georgia until she reaches the Atlantic. She turns south and travels on the entire
+Atlantic and Gulf coasts of Florida, then continues on the Gulf coast until
+she reaches Texas. There she turns inland and travels north on the eastern 
+borders of Texas, Oklahoma, Kansas, Nebraska, and South Dakota to the southwest
+corner of Minnesota. She then turns east and travels east along the northern
+borders of Iowa and Illinois to Lake Michigan. She travels along the Lake 
+Michigan coasts of Illinois and Indiana, then continues east on the 
+Indiana/Michigan border to Ohio. She continues south on the Indiana border
+to Kentucky, continues on the Ohio border to West Virginia, and continues
+on the Kentucky border to return to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -517904 square miles, -1341371 square km <br>
+<b>Explanation:</b> Clockwise.
+Kentucky + Indiana + Illinois + Iowa + Missouri +  Arkansas +  Louisiana +  
+Mississippi + Alabama +  Florida.
+
+<p>
+<LI><b>Question:</b> Andy starts at the northeast corner of New Mexico.
+He travels south along the New Mexico/Texas border and continues on the
+border and coast of Texas until he reaches Louisiana. There he makes a left
+turn inland. He travels north on the western border of Louisiana,
+then east on its northern border to Mississippi. He again makes a left turn
+and heads north on the western border of Mississippi. He continues on the border
+of Mississippi until he is again at the Gulf coast. He turns left and follows
+the Alabama Gulf coast to Florida. He again turns inland on the western
+border of the Florida panhandle. He continues east on the northern border
+of Florida to the Atlantic. He travels up the Georgia coast to South
+Carolina and continues on the border of Georgia until reaching 
+Tennessee. He travels northeast on the border of North Carolina and Tennessee,
+then continues on the border of Tennessee to Arkansas. He travels west along
+the southern borders of Missouri, Kansas, and Colorado until he returns to
+his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 542697 square miles, 1405585 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Georgia + Alabama + Tennessee + Arkansas + Oklahoma + Texas.
+<p>
+<LI><b>Question:</b> Andy starts at the southernmost point of Texas. He travels
+along the Gulf coasts of Texas and Louisiana to the state of Mississippi. 
+He continues
+on the border of Louisiana to its northwest corner, then continues on the 
+the border of Arkansas until he again reaches the state of Mississippi.
+He travels east on the northern border of Mississippi, then south on its
+eastern border until he is again at the Gulf of Mexico. He travels east
+on the Alabama Gulf coast, then continues on the border of Alabama until
+he reaches Tennessee. He makes a right turn and travels east and then
+northeast on the Tennessee border to the northeast corner of Tennessee.
+He travels west on the northern border of Tennessee to Kentucky. He makes
+a sharp right along the Kentucky/Virginia border and continues on the border of
+Kentucky until he reaches the Mississippi river. He travels upstream on the
+river to the northeast corner of Iowa. He travels west on the northern border
+of Iowa, and continues on the border of Iowa until reaching Nebraska. He
+travels west along the northern border of Nebraska to Wyoming. He travels
+south on the eastern border of Wyoming to Colorado. He turns left and travels
+east, then south, then west on the border of Colorado to the northwest corner
+of Oklahoma. He travels south along the western border of the Oklahoma panhandle
+to Texas. He continues on the border of Texas with New Mexico and Mexico
+until he has returned to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 804374 square miles, 2083329 square km
+<br>
+<b>Explanation:</b> Counter-clockwise.
+Louisiana + Texas + Oklahoma + Kansas + Nebraska + Iowa + Missouri + 
+Kentucky + Tennessee + Alabama.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the northwest corner of Missouri. She travels
+south on the western border of Missouri, Arkansas, and Louisiana to the
+Gulf Coast. She travels east on the Gulf Coast of Louisiana to Mississippi. 
+She turns inland on the border of Mississippi. She follows the border of 
+Mississippi to the 
+northwest corner of Alabama. She continues east on the northern border
+of Alabama and follows the border of Alabama
+until she again reaches the Gulf Coast. She travels along the entire
+coastline of Florida, and continues up the Atlantic coast to the southeast corner
+of Virginia. She travels inland along entire length of the southern border of 
+Virginia. At the southwest corner of Virginia, she makes a hard right turn,
+and continues on the border of Kentucky with Virginia and West Virginia to
+Indiana. She travels north on the Ohio/Indiana border to the border of Michigan.
+She makes a left turn and travels west along the northern border of Indiana
+and the Lake Michigan coast of Indiana and Illinois. She continues on the
+border of Illinois to the southeast corner of Iowa. She travel west to her
+starting point. <br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  547100 square miles, 1416989 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Florida +  Georgia + South Carolina + North Carolina + Tennessee + Kentucky
++ Indiana + Illinois + Missouri + Arkansas + Louisiana
+
+<p>
+<LI><b>Question:</b> Amy starts at the southernmost point of South Carolina.
+She travels up the Atlantic coast until she reaches Maryland. She travels inland
+on the Maryland border with Virginia and West Virginia until she reaches
+the Mason-Dixon line. She travels west and north on the border of Pennsylvania
+until she reaches Lake Erie. She turns left and travels along the Ohio coast of
+Lake Erie. She continues west and south on the border of Ohio until she 
+reaches the Ohio River. She travels downstream on the Ohio River until it
+joins with the Mississippi, then travels downstream on the Mississippi until
+she reaches Arkansas. She travels west along the Arkansas/Missouri border,
+then continues on the Arkansas border to the northwest corner of Louisiana.
+She continues south on the border of Louisiana to the Gulf of Mexico. She 
+travels along the Gulf coast of Louisiana and Mississippi to Alabama. She 
+travels north to the northwest corner of Alabama. She travels east along the 
+northern borders of Alabama and Georgia to South Carolina. Then she travels
+along the Georgia/South Carolina border and returns to her starting point.
+<br> What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 421319 square miles, 1091216 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Louisiana + Arkansas + Mississippi + Tennessee + Kentucky + Ohio + West Virginia
++ Virginia + North Carolina + South Carolina
+
+<p>
+<LI><b>Question:</b> Andy starts at the southwest corner of Louisiana. He
+travels east along the coast of the Gulf of Mexico to Florida. He turns inland,
+going north on the western border of the Florida panhandle, then continues on 
+the northern border of Florida to the Atlantic. He travels up the Atlantic
+coast to Maryland. He turns inland on the Virginia/Maryland border and follows
+the Maryland border until it meets Pennsylvania. He turns left and goes first
+east and then north on the border of Pennsylvania until he reaches Ohio. At 
+that point he makes a sharp left and travels along the border of Ohio
+with West Virginia to Kentucky. He travels the length of the Kentucky/West
+Virginia border, then continues on the Kentucky border until he reaches 
+Ohio again. He travels north on the western border of Ohio to Michigan.
+He travels west on the northern borders of Indiana, Illinois, and Iowa to
+the northwest corner of Iowa. He travels south on the eastern borders of 
+South Dakota, Nebraska, Kansas, Oklahoma, and Texas and returns to his
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 668711 square miles, 1731961 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Iowa + Missouri + Arkansas + Louisiana + Mississippi + Alabama + Georgia
++ South Carolina + North Carolina + Virginia + West Virginia + Tennessee 
++ Indiana + Illinois
+
+<p>
+<LI><b>Question:</b> Andy starts at the meeting point of West Virginia,
+Pennsylvania, and Ohio. He travels downstream on the Ohio River to the 
+southwest corner of Indiana. He travels north on the Indiana/Illinois
+border. He continues on the border of Illinois until he reaches the 
+Mississippi River. He travels downstream on the Mississippi until it
+separates from the Louisiana/Mississippi border, then continues on the
+state border to the Gulf of Mexico. He travels along the Gulf coasts of
+Mississippi and Alabama until he reaches Florida. He continues on the
+border of Alabama to the northwest corner of Georgia. He travels east
+and northeast on the border of Tennessee until he reaches the northeast
+corner of Tennessee. He travels east on the northern border of
+North Carolina to the Atlantic coast. He travels north on the Atlantic
+coast to Maryland. He travels inland on the border of Maryland until he
+reaches Pennsylvania. He travels west and north on the border of
+Pennsylvania, returning to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 303287 square miles, 785513 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+West Virginia + Virginia + Kentucky + Illinois + Tennessee + Mississippi
++ Alabama
+
+<p>
+<LI><b>Question:</b> Andy starts at the point where Pennsylvania and Ohio
+meet Lake Erie. He travels along the lake coast of Ohio, and continues on
+the northern border of Ohio and Indiana to Illinois. He travels along the 
+northern border of Illinois to the Mississippi River. He travels downstream
+on the river to the northern border of Missouri. He travels west then
+south on the border of Missouri to the northwest corner of Arkansas. He
+continues south on the western border of Arkansas then continues on the
+border of Arkansas until he is again at the Mississippi River. He travels
+upstream on the Mississippi River to the northwest corner of the state of 
+Mississippi. He continues on the border of Mississippi to the coast of
+the Gulf of Mexico. He travels the length of the Alabama coast. He turns inland
+on the border of Florida and continues on the border of Florida until
+he reaches the Atlantic. He travels northward on the Atlantic coast until
+he reaches Maryland. He travels inland on the Maryland/Virginia border to
+West Virginia. He then continues on the Virginia border to the southwest
+corner of Virginia. He continues on the Kentucky border until he is
+again at West Virginia. He travels along the West Virginia/Ohio border and
+then continues on the Ohio border to return to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 534085 square miles, 1383280 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Virginia + North Carolina + South Carolina + Georgia + Alabama + 
+Tennessee + Arkansas + Missouri + Illinois + Indiana + Ohio
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the southeast corner of Virginia.
+She travels south on the Atlantic coast to Florida. She travels west on
+the northern border of Florida, then continues on the border of Florida
+until she reaches the Gulf of Mexico. She turns right and travels
+west on the Gulf Coast to the border of Texas. She turns inland and travels
+north on the eastern border of Texas and Oklahoma until she reaches the
+northwest corner of Arkansas. She continues on the border of Arkansas
+to the Mississippi River. She travels upstream on the Mississippi to
+the southern border of Wisconsin. She travels east on the southern border
+of Wisconsin to Lake Michigan. She travels along the Lake Michigan coasts
+of Illinois and Indiana. She continue on the borders of Indiana and Ohio
+with the state of Michigan, then continues on the border of Ohio until she
+reaches West Virginia. She travels along the border of West Virginia with 
+Ohio and Kentucky until she reaches Virginia. She travels along the 
+Virginia/West Virginia border then continues on the Virginia border
+until she returns to her starting point.
+<br> What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -559471 square miles, -1449030 square km <br>
+<b>Explanation:</b> Clockwise.
+North Carolina + South Carolina + Georgia + Alabama + Mississippi  + Louisiana
++ Arkansas + Tennessee + Kentucky + Illinois + Indiana + Ohio
+
+<p>
+<LI><b>Question:</b> Andy starts at the southeast corner of Virginia. He travels
+west along the southern borders of Virginia and Kentucky. He continues on the
+Kentucky border until he is again at Virginia. He travels on the Virginia border
+with West Virginia until he reaches Maryland. He continues on
+the West Virginia border to the point where it meets Ohio. He goes north
+on the Ohio/Pennsylvania border to Lake Erie. He continues on the Ohio shore of
+Lake Erie and on the Ohio border with Michigan to Indiana. He travels along the 
+northern borders of Indiana and Illinois to the Mississippi river. He travels
+upstream on the Mississippi to Minnesota, then continues
+on the border of Iowa to its southwest corner. He travels south along the eastern
+borders of Nebraska, Kansas, and Oklahoma to the northwest corner
+of Arkansas. He travels east along the northern border of Arkansas to the
+Mississippi river. He travels downstream  on the Mississippi to the southwest
+corner of Tennessee. He travels east along the southern borders of Tennessee
+and North Carolina to the Atlantic coast. He travels north along the Atlantic
+coast and returns to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 378885 square miles, 981312 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+West Virginia + Ohio + Indiana + Illinois + Iowa + Missouri + Tennessee 
++ North Carolina
+
+<p>
+<LI><b>Question:</b> Andy starts at the southeast corner of Virginia. He travels
+south on the Atlantic coast to the southern tip of Florida, then along the
+coast of the Gulf of Mexico to the border of Texas. There he turns inland and 
+heads north and west on the border of Texas until he reaches New Mexico. He travels
+north on the border of New Mexico then east on the southern borders of 
+Colorado and Kansas to Missouri. There he makes a left turn and travels
+north on the border of Missouri. He continue on the border of Missouri
+until he reaches the juncture of the Mississippi and Ohio Rivers. He travels
+upstream on the Ohio river to Pennsylvania. There he makes a sharp right
+turn and travels south and east on the border of Pennsylvania until
+reaching Maryland. He continues on the border of West Virginia to
+Virginia. He travels southwest on the northwest border of Virginia to Tennessee.
+He travels west on the northern border of Tennessee to the Mississippi River. 
+He continues on the border of Tennessee until he reaches North Carolina. He
+travels along the borders of North Carolina with Tennessee and Virginia and
+returns to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -605954 square miles, -1569421 square km <br>
+<b>Explanation:</b> Clockwise.
+West Virginia + Kentucky + Missouri + Oklahoma + Arkansas + Louisiana + 
+Mississippi + Alabama + Florida + Georgia + South Carolina + North Carolina
+
+<p>
+<LI><b>Question:</b> Amy starts at the northwest corner of Maryland. She travels
+along the Maryland/West Virginia border until she reaches Virginia. She
+travels down the border of Virginia with West Virginia and Kentucky
+to Tennessee. She makes a hard left and travels on the northern
+border of Tennessee to North Carolina. She makes a hard right and travels 
+southwest on the North Carolina border to the southwest corner of North
+Carolina. She continues on the border of North Carolina to the Atlantic Ocean. 
+she turns right and travels south on the Atlantic coast to the southern tip of
+Florida. She continues on the coast of the Gulf of Mexico until she reaches
+Texas. She travels north on the western border of Louisiana then east on 
+its northern border to the Mississippi River. She travels upstream on the
+Mississippi to the juncture with the Ohio River. She travels upstream
+on the Ohio to the border of the state of Ohio. She travels north on 
+western border of Ohio to Michigan. She continues on the border of Ohio to
+Pennsylvania. She travels south and east on the border of Pennsylvania, and
+returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -443979 square miles, -1149906 square km <br>
+<b>Explanation:</b> Clockwise.
+South Carolina + Georgia + Florida + Alabama + Mississippi + Louisiana
++ Tennessee + Kentucky + Ohio + West Virginia
+
+<p>
+<LI><b>Question:</b> Andy starts at the southeast corner of North Carolina.
+He travels inland on the North Carolina southern border until he reaches
+Tennessee. He continues west on the Tennessee southern border to the 
+Mississippi River. He travels upstream on the Mississippi to the northern border
+of Tennessee. He travels east on the northern borders of Tennessee and 
+North Carolina and returns to the Atlantic coast. He travels north on the
+coast to Maryland. He travels inland on the Virginia/Maryland border and
+continues on the Virginia border until reaching Kentucky. He turns right and
+travels along the border of Kentucky and West Virginia to the Ohio River.
+He travels downstream on the Ohio River to the Mississippi River.
+He travels upstream on the Mississippi to the northern border of Missouri. He
+continues on the border of Missouri to Kansas. He travels along the 
+northern and western borders
+of Kansas to the southeast corner of Colorado. He turns right and heads
+west along the Oklahoma/Colorado border. He continues on the Oklahoma border
+to Arkansas. He travels south on the eastern border of Texas to Gulf coast.
+He travels along the Gulf coast of Louisiana and Mississippi until reaching
+continues east on the northern border of Florida 
+to the Atlantic. He travels
+north on the Atlantic coast and returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 593453 square miles, 1537043 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+South Carolina + Georgia + Alabama + Mississippi + Louisiana + Arkansas +
+Oklahoma + Kansas  + Missouri + Kentucky + Virginia
+<p>
+
+<p>
+<LI><b>Question:</b> Amy starts at the meeting point of Saskatchewan,
+Manitoba, Nunavut, and Northwest Territories. She travels due south to the 
+US Canada border, then she continues along the border of Saskatchewan to 
+its northwest corner. She continues on the border of Alberta until she is
+again at the US/Canada border. She makes a hard right and travels
+west along the border until she reaches Idaho. Then she travels south
+along the eastern borders of Idaho, Utah, and Arizona to the border with
+Mexico. She travels along the border of Mexico with New Mexico and 
+Texas to the Gulf coast. She travels on the US Gulf coast until she
+reaches the state of Mississippi. She travels along the Louisiana/Mississippi
+border until it becomes the Mississippi river. She travels upstream on the
+Mississippi to the southeast corner of Iowa. She travels west on the
+southern border of Iowa then north on the western borders of Iowa and
+Minnesota to the US/Canada border. She travels east on the Canada border
+to Ontario and 
+then continues on the eastern border of Manitoba
+to Hudson Bay. She travels along the Manitoba coast of Hudson Bay to 
+Nunavut, then travels west to return to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1791613 square miles, 4640278 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Alberta + Montana + Wyoming + Colorado + New Mexico + North Dakota +
+South Dakota + Nebraska + Kansas + Oklahoma + Texas + Manitoba +
+Missouri + Arkansas + Louisiana
+<p>
+<LI><b>Question:</b> Andy starts at easternmost point of the northern border
+of Idaho. He travels along the border of Idaho to Wyoming. He travels 
+south, and east on the border of Wyoming to Nebraska. He continues 
+on the border of Colorado to the four state point. He travels west and north
+on the border of Utah to the northeast corner of Nevada. He continues on the
+Nevada border to Arizona. He travels south on the western border of Arizona
+to Mexico. He travels east on the US/Mexico border to Texas. He continues
+on the border of New Mexico to Oklahoma. He travels east on the 
+southern border of Oklahoma to Arkansas. He then travels north on
+the western borders of Arkansas, Missouri, Iowa, and Minnesota to
+the northeast corner of South Dakota. He travels west on the border
+between South and North Dakota, then continues on the border of North Dakota
+to the Canada border.
+He travels west along 
+the border to the southwest corner of Saskatchewan. He travels north to
+the northwest corner of Saskatchewan. He continues on the border of
+Alberta until he is again at the US/Canada border. He makes a sharp right
+turn and travels west, returning to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 1152937 square miles, 2986107 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Alberta + Montana + Wyoming + South Dakota + Nebraska + Kansas +
+Oklahoma + New Mexico + Arizona + Nevada
+
+<p>
+<LI><b>Question:</b> Andy starts at the southwest corner of New Mexico. He travels 
+north to Wyoming. He travels east on the southern border of Wyoming, and continues
+on the border of Wyoming to the northwest corner of Nebraska. He continues on
+the border of Nebraska to Missouri. He travels east on the northern border
+of Missouri to the Mississippi river. He travels downstream on the Mississippi
+to the southwest corner of Kentucky. He travels east on the Kentucky/Tennessee
+border and continues on the Tennessee border to Georgia. He turns left 
+and travels east on the northern border of Georgia to South Carolina. 
+He travels along the border between South and North Carolina to the
+Atlantic coast. He travels south along the Atlantic coast to Florida.
+He travels west on the Florida/Georgia border, then continues on the Georgia
+border to the southern border of Tennessee. He travels west on the border
+of Tennessee to the Mississippi River. He travels upstream on the 
+Mississippi to Missouri. He travels the length of the Missouri/Arkansas border
+and continues on the Missouri border to the northeast corner of Kansas. He
+continues on the Kansas border to Oklahoma. He travels along the borders
+of the Oklahoma panhandle with Colorado and New Mexico. He continues on the
+border of New Mexico and returns to his starting point
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -504933 square miles, -1307776 square km <br>
+<b>Explanation:</b> Clockwise.
+New Mexico + Colorado + Nebraska + Missouri + Tennessee + South Carolina
++ Georgia.
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at a point on the border of Belarus
+and Poland. She travels northward and follows the border of Poland until
+it reaches the Baltic Sea, near Gdansk. She then travels west along the coast
+of the Baltic Sea until she reaches the border of Denmark. She crosses the
+Jutland peninsula along the southern border of Denmark; then continue on the
+coast of the North Sea until reaching the Netherlands. She travels south on the 
+eastern border of Germany to France. She continues south on the
+western border of France until reaching Italy; then east on the 
+southern borders of Switzerland, Austria, and Slovakia until reaching
+Ukraine. She then travels north on the eastern borders of Slovakia and 
+Poland and returns to her starting point.
+
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 356502 square miles, 923339 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Poland + Germany + Switzerland + Austria + Czechia + Slovakia
+
+<p>
+<LI><b>Question:</b> Andy starts on a beach in Koper, Slovenia. 
+He travels southeast
+along the coast of the Adriatic Sea until reaching the border of Greece.
+He travels along the northern border of Greece and the border of Turkey
+and Bulgaria until reaching the Black Sea. He travels north on the coast
+of the Black Sea until reaching Ukraine. He travels inland along the
+southwest border of Ukraine until he reaches Slovakia. He travels west along
+the southern border of Slovakia, south on the eastern border of Austria,
+and west on the southern border of Austria until he reaches Italy. He travels
+south on the border of Italy  and Slovenia
+until he reaches the Adriatic, and then returns to his starting point.
+<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 306095 square miles, 792786 square km<br>.
+<b>Explanation:</b> Counter-clockwise.
+Slovenia + Croatia + Bosnia-Herzegovina + Montenegro + 
+Serbia +  Kosovo + Albania  + North Macedonia + Bulgaria + Moldova + 
+Romania + Hungary.
+
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the point where Iran and Turkmenistan meet the shore of the
+Caspian Sea.
+She travels along the Iranian shore of the Caspian, and then continues on
+the border of Iran until
+reaching the Persian Gulf. She travels south and east along the shore of
+the Persian Gulf, the Gulf of Oman, and the Indian sea,  until she reaches 
+Pakistan.  She then turns inland, travelling on the border of Pakistan with
+Iran and Afghanistan
+until she reaches China. She follows the border of China 
+northward until she reaches Russia. She then turns northwest following
+the border of Russia until it reaches the Caspian Sea. She travels east and
+south on the 
+shore of the Caspian Sea until she returns to her starting point.
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 2778906 square miles, 7197366 square km <br> 
+<b>Explanation:</b> Counter-clockwise.
+Iran +
+Pakistan +
+Afghanistan +
+Tajikistan +
+Kyrgyzstan +
+Kazakhstan +
+Turkmenistan +
+Uzbekistan 
+
+<p>
+<LI><b>Question:</b> Amy starts at the eastmost point of the French 
+Mediterranean coast. She travel along the French and Spanish Mediterranean 
+coast to Gibraltar, then continues on the Spanish Atlantic coast until reaching
+Portugal. She travels the length of the border between Spain and Portugal until
+she arrives again at the Atlantic, She then continues going north and east
+on the Atlantic coast until she reaches Belgium. She travels inland on the
+border of Belgium and continues to follow the border of Belgium until she 
+reaches Germany. She travels northward on the western border of Germany to the
+North Sea. She travels east on the North Sea coast of Germany until Denmark.
+She cuts across on the border between Denmark and Germany, then continues
+on the border of Germany until she reaches the meeting point of Germany,
+Austria, and Czechia. She travels along the borders of Austria with
+Czechia, Slovakia, Hungary. Slovenia, and Italy until she reaches Switzerland.
+She travels along the southern border of Switzerland until she is again at France.
+She travels south on the border of France with Italy and returns to her 
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -589388 square miles, -1526516 square km <br>
+<b>Explanation:</b> Clockwise.
+Spain + France + Luxembourg + Germany + Switzerland + Austria
+
+
+<p>
+<LI><b>Question:</b> Amy starts at a point along the border of Poland
+and Ukraine. She travels south along the border of Ukraine with Poland, 
+Slovakia, and Hungary until she reaches Romania. She continues south 
+on the border of Romania with Hungary and with Serbia to Bulgaria. She
+travels along the borders of Serbia, Kosovo, and Montenegro with Bulgaria, North
+Macedonia, and Albania
+to the Adriatic sea. She travels northwest along the coast of the Adriatic and
+continues on the coast of the Adriatic and of the 
+Mediterranean until she reaches Spain. She travels the length of the 
+French/Spanish border to the Atlantic. She continues on the French coast of the
+Atlantic and the English Channel to Belgium. She travels the length
+of the Belgian coast. Then she turns inland, and continues to follow the
+border of Belgium to Luxembourg. She continues on the border of Germany 
+until she reaches the Baltic Sea. She travels along the Baltic coast of
+Poland and continues to follow the border of Poland until she has returned
+to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -672326 square miles, -1741325 square km <br>
+<b>Explanation:</b> Clockwise.
+France + Belgium + Luxembourg + Switzerland + Italy + Austria + Czechia +
+Poland + Slovakia + Hungary + Serbia + Kosovo + Montenegro + Bosnia-Herzegovina +
+Slovenia + Croatia
+
+<p>
+<LI><b>Question:</b> Amy starts at Gibraltar. She travels northwest up the
+Atlantic coast of Spain. She continues on the Alantic coast until she reaches 
+the Netherlands. She travels inland on the border of the Netherlands and Belgium,
+then continues on the border of the Netherlands to the North Sea. She travels
+east on the coast of the North Sea to Denmark. She travels east on the southern
+border of Denmark. She then continues east on the coast of the Baltic Sea to 
+Poland. She travels south on the eastern border of Poland and continues on
+the border of Poland to Ukraine. She travels south on the Ukraine border to 
+Hungary. She travels west on the southern borders of Slovakia, Austria, and 
+Switzerland to France. She travels south on the western border of France
+to the Mediterranean. She travels west and south along the Mediterranean coast
+and returns to her starting place.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  -686167 square miles, -1777172 square km <br>
+<b>Explanation:</b> Clockwise.
+Portugal + Spain + France + Belgium + Luxembourg + Germany + Czechia 
++ Slovakia + Austria + Switzerland.
+
+<p>
+<LI><b>Question:</b> Amy starts at the meeting point of Switzerland,
+Germany and France. She travels east along southern border of Germany 
+to Czechia. She continues on the border of Austria until she is again
+at Switzerland. She continues on the border of Italy to the Mediterranean.
+She travels along the entire coastline of mainland Italy to Slovenia. She
+travels southwest along the eastern coast of the Adriatic Sea to Montenegro
+She turns inland on the border between Montenegro and 
+Bosnia-Herzegovina. She continues on the border of Bosnia-Herzegovina to Croatia
+She continues on the border of Serbia to Romania.
+She travels northeast on the border of Hungary with Romania
+to Ukraine. She makes a left turn, and travels west and north on the
+western border of Ukraine to Poland. She travels west along the southern border
+of Poland to Germany, then north on the border of Poland and Germany to
+the Baltic Sea. She travels west on the Baltic Sea coast of Germany to
+Denmark. She crosses Jutland on the border of Germany with Denmark, then
+continues on the coast of Germany to the Netherlands. She travels south
+on the western border of Germany and returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 382402 square miles, 990420 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Bosnia-Herzegovina + Croatia + Slovenia + Italy + Hungary + Slovakia +
+Czechia + Germany
+
+<p>
+<LI><b>Question:</b> Amy starts at the point where Ukraine meets Poland
+and Belarus. She travels north and west on the border of Poland with 
+Belarus, Lithuania, and Kaliningrad to the Baltic Sea. She travels 
+the length of the Baltic Sea coast of Poland to Germany. Then she turns 
+inland and travels south 
+on the eastern border of Germany. She continues on the border of Germany
+to Switzerland. She continues on the border of Austria to Slovenia.
+She travels south on the Italy/Slovenia border to the Adriatic. She travels 
+southeast down the coast of the Adriatic to Albania. She travels inland on
+the border of Albania and Montenegro and continues on the border of
+Albania to Greece. She travels east on the northern border of Greece to
+Turkey. She continues east on the Bulgaria/Turkey border to the Black Sea.
+She travels north on the coast of the Black Sea to Ukraine. She turns
+inland on the border between Romania and Ukraine. She continues following the 
+border of Romania until she reaches Serbia. She continues on the
+border of Hungary to Slovakia. She follows the border of Slovakia with Austria,
+Czechia, and Poland to Ukraine. She travels north on the western border of
+Ukraine and returns to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b>  429573 square miles, 1112595 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Poland + Czechia + Austria + Slovenia + Croatia + Serbia + Montenegro  + Kosovo
++ Bosnia + North Macedonia + Bulgaria + Romania.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the meeting point of Poland, Lithuania,
+and Kaliningrad. He travels west on the northern border of Poland and then
+on the Polish coast of the Baltic Sea. He continues on the coast of the 
+Baltic Sea until reaching Denmark. He crosses Jutland on the southern border
+of Denmark and continues on the coast of the North Sea until the Netherlands.
+There he turns inland along the eastern borders of the Netherlands, 
+Belgium, and Luxembourg until he reaches France. He continues south on the 
+eastern border of France to the Mediterranean. There he turns left and travels
+around the entire coastline of mainland Italy. He continues southwest on
+the coast of the Adriatic Sea until he reaches Greece. He travels
+northeast and east on the northern border of Greece to Turkey. He travels
+along the Turkey-Bulgaria border to the Black Sea. He travels north on
+the coast of the Black Sea until he reaches Ukraine. He travels inland
+on the Ukraine/Romania border to Moldova. He turns right and travels along
+the Ukraine/Moldova border until he is again at Romania. He continues
+on the border of Ukraine with Romania, Hungary, Slovakia, and Poland until
+he reaches Belarus. He then continues on the border of Poland and returns
+to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 759952 square miles, 1968275 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Moldova + Romania + Bulgaria + North Macedonia + Albania + Serbia + Montenegro + 
+Kosovo + Bosnia-Herzegovina + Croatia + Slovenia + Italy + Switzerland + Germany + Poland + Czechia + Slovakia + Austria + Hungary
+<p>
+
+<p>
+<LI><b>Question:</b> Andy starts at on the coast of the Gulf of Riga, where
+Estonia meets Latvia. He travels inland on the Estonia/Latvia border, then
+continues on the border of Latvia to Lithuania. He continues south on the border
+of Belarus to Ukraine
+and then continues on the border of Poland to Slovakia. He travels
+west on the border of Slovakia and Czechia with Poland, then continues on
+the border of Czechia until he is again at the border of Slovakia.
+He continues east on the southern border of Slovakia to Ukraine. He travels 
+southeast on the Ukraine/Hungary border to Romania. 
+He travels southwest on the northwest border of Romania to Serbia.
+He continues west on the southern border of Hungary to Austria. He continues
+west on the border of Austria with Slovenia, Italy, and Switzerland to Germany.
+He travels along the Swiss/German border to France, then continues on the
+German border to the North Sea. He travels along the coast of Germany to
+Denmark and then travels the length of the Danish/German border. He continues
+east on the Baltic Sea coast, and continues on the coast of the Baltic Sea and the
+Gulf of Riga until he returns to his starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -383110 square miles, -992254 square km <br>
+<b>Explanation:</b> Clockwise.
+Latvia + Lithuania + Kaliningrad + Poland + Germany + Austria + Hungary
+
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the point on the Black Sea coast where
+Romania meets Bulgaria. She travel south on the Black Sea coast to Turkey.
+Then she travels inland on the southern border of Bulgaria. She continues on the 
+border of Bulgaria until she is again at Romania. She travels northwest on
+the border of Romania with Serbia to Hungary.  She continues on the border
+of Serbia to Bosnia-Herzegovina. She travels along the entire border of 
+Bosnia-Herzegovina with Croatia to the Adriatic Sea. She travels up the
+coast of the Adriatic to Italy. She travels north on the border of Slovenia and
+Italy to Austria. She travels the length of the border of Austria with Slovenia,
+then continues on the border of Austria to Czechia. She travels northeast on
+the western border of Czechia and continues on the border of Czechia to
+the border of Germany. She travels north on the eastern border of Germany to the
+Baltic Sea. She turns right and travels on the coast of the Baltic Sea and the
+Gulf of Riga to Estonia. She turns inland and follows the border of Latvia
+to Russia. She travels south and east on the border of Russia with Latvia and 
+Belarus to Ukraine. She turns right and follows the border of Ukraine
+west, then south, then east to the northwest corner of Moldova. There she makes
+a right turn and follows the western border of Moldova until it again meets 
+Ukraine. She follows the border of Ukraine and Romania to the Black Sea, then
+travels south on the coast of the Black Sea to return to her 
+starting point
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -476156 square miles, -1233245 square km <br>
+<b>Explanation:</b> Clockwise.
+Croatia + Slovenia + Hungary + Romania +  Czechia + Slovakia + Poland
++ Kaliningrad + Lithuania + Latvia + Belarus
+
+<p>
+<LI><b>Question:</b> 
+Andy starts on the coast of the Baltic Sea at the north
+end of the German/Polish border. He travels east on the Baltic Sea coast
+of Poland to Kaliningrad. He continues inland on the Polish border and follows the Polish
+border to Slovakia. He travels south on the border of Ukraine with Slovakia
+and Hungary to Romania. He travels southwest on the border of Romania with
+Hungary, then turns left and heads southeast on the border of Romania with
+Serbia. He continues on the border of Serbia to Bosnia-Herzegovina. 
+He travels along the 
+border of Montenegro and Bosnia-Herzegovina to the coast of the Adriatic. 
+He goes along the short Bosnian coast
+to the southernmost tip of Croatia. He then heads inland on the border
+of Croatia, which he follows until he reaches Slovenia. He travels along the
+border of Slovenia with Hungary and with Austria. He continues on the border 
+of Austria until he reaches Czechia. He travels north on the eastern border
+of Germany and returns to his starting point.
+<br> Croatia-Slovenia
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -288146 square miles, -746298 square km <br>
+<b>Explanation:</b> Clockwise.
+Poland + Slovakia + Czechia + Austria + Hungary + Serbia + Bosnia
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at the meeting point of Montenegro and Albania
+with the Adriatic Sea. She travels inland on the border of Montenegro and
+Albania to Kosovo, then continues on the border of Albania to North Macedonia.
+She makes a sharp left and travels along the northern border of North Macedonia
+to Bulgaria. She travels north on the western border of Bulgaria to Romania,
+then continues on the border of Bulgaria to the Black Sea. She travels
+north on the Black Sea coast of Romania to Ukraine. She heads inland on the
+border of Ukraine with Romania, then continues on the border of Ukraine to
+Belarus. She continues north and west on the border of Poland to the Baltic Sea.
+She travels west on the coast of the Baltic Sea to Denmark. She travels
+along the border of Denmark with Germany, then continues on the North Sea
+coast of Germany to the Netherlands. She turns inland on the border of
+Germany and the Netherlands and travels south along the border of Germany until
+she reaches Austria. She travels along the border of Austria with Switzerland
+and Italy to Slovenia. She travels south on the Italian/Slovenian border to the 
+Adriatic. She travels along the short Slovenian coast to Croatia. She turns
+inland on the border of Croatia, 
+then continues on the boundary of Croatia  to 
+Bosnia-Herzegovina. She travels on the eastern border of 
+Bosnia-Herzegovina to Montenegro.
+She travels southwest on the border of Montenegro with Bosnia to
+the Adriatic coast, then south on the coast to return to her starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 528994 square miles, 1370095 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Moldova + Romania + Hungary + Slovakia + Czechia + Poland +
+Germany + Austria + Slovenia + Serbia + Montenegro + Kosovo.
+
+<p>
+<LI><b>Question:</b> 
+Andy starts at the southernmost point on the Black Sea
+coast of Bulgaria. He travels north on the Black Sea coast of Bulgaria and
+Romania to Ukraine. He turns inland on the Romania/Ukraine border and follows
+the Romanian border to Hungary. He continues northwest on the border of 
+Ukraine and Hungary, then continues on the border of Hungary to Slovenia.
+He travels along the border of Slovenia with Austria and Italy to the 
+Adriatic Sea. He travels down the coast of the Adriatic to the southmost
+point of Albania. There he turns inland on the border of Albania and Greece.
+He continues on the border of Albania with North Macedonia and Kosovo to Montenegro.
+He travels along the Montenegro border with Kosovo and Serbia, 
+then continues along the 
+border of Serbia to North Macedonia. He travels south along the eastern border
+of North Macedonia to Greece. He travels along the northern border of Greece to
+Bulgaria and then along the border of Bulgaria with Turkey to return to his
+starting point.
+<br> 
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 48938 square miles, 644750 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Bulgaria + Romania + Hungary + Slovenia + Croatia + Bosnia-Herzegovina + 
+Montenegro + Albania
+<p>
+<LI><b>Question:</b> Amy starts at the meeting point of Italy, Austria,
+and Slovenia. She travels on the border of Slovenia and Austria, then
+continues on the border of Slovenia until she reaches the Adriatic. She 
+travels along the Adriatic coast of Croatia to Bosnia. She makes a sharp
+left and travels inland on the border of Croatia to Hungary. 
+She turns right and travels along
+the border of Hungary and Serbia to Romania. She continues on the border of
+Serbia until she reaches Bosnia. She travels south on the border of Bosnia
+and Montenegro to the Adriatic Sea. She travels south on the Montenegro
+coast of the Adriatic to Albania. She turns left and travels inland on
+the Albanian/Montenegrin border. She continues on the border of Albania to
+Greece.  She travels east on the northern border of Greece
+to Turkey, then east on the border of Turkey with Bulgaria to the Black Sea.
+She travels north on the coast of the Black Sea to Ukraine. She makes 
+a left turn inland along the Romania/Ukraine border, then continues on the
+border of Ukraine to Poland. She travels west on the southern border of
+Poland to Germany. She then travels along the border of Germany and
+Czechia and continues on the border of Germany to Switzerland. She then
+continues on the border of Austria and returns to her starting point.
+<br> Serbia-Bosnia
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> 319126 square miles, 826536 square km <br>
+<b>Explanation:</b> Counter-clockwise.
+Montenegro + Kosovo + North Macedonia + Bulgaria + Romania + Moldova + Slovakia +
+Czechia + Austria + Croatia + Hungary
+
+<p>
+<LI><b>Question:</b>
+Andy starts at the point where Nigeria and Cameroon meet the Atlantic.
+He travels inland, going northward on the boundary of Nigeria until
+he reaches Niger. He travels on the boundary of Niger with Chad, then
+continues on the border of Niger until he reaches Mali. He travels northwest
+on the border of Algeria and Mali, and continues on the border of Algeria
+to the Mediterranean Sea. 
+He travels east on the shore of the Mediterranean to Egypt, then travels south
+along the west boundaries of Egypt, Sudan, and South Sudan until he
+reaches the Democratic Republic of the Congo. He makes a right turn
+and travels west on the southern boundary of the Central African
+Republic and Cameroon, then turns north up the coast of the Atlantic until
+he reaches his starting point.<br>
+What is the signed area enclosed by the path? <br>
+<b>Answer:</b> -2581973 square miles, -6687311 square km <br>
+<b>Explanation:</b>
+Clockwise. Algeria + Tunisia + Libya + Chad + Central African Republic +
+Cameroon
+
+<p>
+<LI><b>Question:</b> 
+Amy starts at Tangier and travels south on
+the Atlantic until she reaches Dakar. She travels inland and crosses the
+African continent west to east: First she follows the southern 
+boundary of Mauritania until
+reaching Mali; then she turns south and follows the border of Mali until she
+reaches Niger; then turns south again and follows the border of Niger 
+until she reaches the point where Niger meets Chad and Nigeria. She travels
+southeast along the Chad-Nigeria border then continues on the border of Chad
+to Sudan. She turns right and travels south on the western borders of Sudan and
+South Sudan, then continues on the border of South Sudan to Kenya. She turns
+right and travels on the western border of Kenya, and continues on the
+border of Kenya to the Indian Ocean. She travels northeast on the coast of the 
+Indian Ocean, then continues on the African coasts of the Gulf of Aden and
+the Red Sea. She continues
+on the Sinai Peninsula coast of the Red Sea, then crosses to the Mediterranean
+along the border of Egypt and Israel. She travels east on the coast
+of the Mediterranean until she returns to her starting point.
+point.<br>
+
+<b>Answer:</b> 6073925 square miles, 15731467 square km  <br> 
+<b>Explanation:</b>
+Counter-clockwise.
+Mauritania + Mali + Niger + Chad + Sudan (including South Sudan) 
++ Ethiopia + Kenya + 
+Somalia + Western Sahara + Morocco + Algeria + Tunisia + Libya + Egypt
+
+
